@@ -89,9 +89,48 @@ static const string constStrDecs =
 
 int main(int ac,char*av[])
 {
-	po::options_description desc(constStrDecs);
-	desc.add_options()
+	po::options_description opt(constStrDecs);
+	opt.add_options()
 		("help,h"      , "")
+		(",appendToFile"      , po::value<string>() ," <localsrc> ... <dst>")
+
 	;
+	
+	po::variables_map vm;
+	try
+	{
+		po::store(po::parse_command_line(ac, av, opt), vm);
+	}
+	catch(const po::error_with_option_name& e)
+	{
+		std::cout << e.what() << std::endl;
+	}	
+	po::notify(vm);
+	
+	if (vm.count("help") || !vm.count("op"))
+	{
+		std::cout << opt << std::endl;
+	}
+	else
+	{
+		try
+		{
+			const std::string op = vm["op"].as<std::string>();
+			const int lhs = vm["lhs"].as<int>();
+			const int rhs = vm["rhs"].as<int>();
+			if (op == "add")
+			{
+				std::cout << lhs + rhs << std::endl;
+			}
+			if (op == "sub")
+			{
+				std::cout << lhs - rhs << std::endl;
+			}
+		}
+		catch(const boost::bad_any_cast& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}	
 	return 0;
 }
