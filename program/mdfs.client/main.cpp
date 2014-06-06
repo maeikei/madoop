@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int ac,char*av[])
 {
-	po::options_description desc("オプションの説明");
+	po::options_description desc("Usage:");
 	desc.add_options()
 		("help,h"      , "ヘルプの出力")
 	;
