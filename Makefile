@@ -6,5 +6,7 @@ build:
 clean:
 	rm -r $(BUILD_DIR)
 
-test-mdfs.client:
-	$(BUILD_DIR)/program/mdfs.client/mdfs.client -appendToFile /user/ mdfs://
+test-mdfs.client:build
+	$(BUILD_DIR)/program/mdfs.client/mdfs.client
+#	$(BUILD_DIR)/program/mdfs.client/mdfs.client -usage
+	$(BUILD_DIR)/program/mdfs.client/mdfs.client -cp ./README.md/ mdfs://

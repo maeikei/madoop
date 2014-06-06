@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-#include <boost/program_options.hpp>
-
-namespace po = boost::program_options;
+#include <vector>
 using namespace std;
+
 
 /*
 
@@ -47,7 +46,7 @@ Usage: hadoop fs [generic options]
 */
 
 static const string constStrDecs =
-"Usage: mdfs.client \n"
+"Usage: mdfs.client\n"
 "        [-appendToFile <localsrc> ... <dst>]\n"
 "        [-cat [-ignoreCrc] <src> ...]\n"
 "        [-checksum <src> ...]\n"
@@ -86,13 +85,20 @@ static const string constStrDecs =
 "        [-usage [cmd ...]]\n"
 ;
 
+#include <boost/program_options.hpp>
+namespace po = boost::program_options;
+
+
+#include "program_options.hpp"
 
 int main(int ac,char*av[])
 {
+/*
 	po::options_description opt(constStrDecs);
 	opt.add_options()
 		("help,h"      , "")
-		(",appendToFile"      , po::value<string>() ," <localsrc> ... <dst>")
+		("appendToFile",po::value< vector<string> >(),"<localsrc> ... <dst>")
+		("cat",po::value< vector<string> >(),"[-ignoreCrc] <src> ...]")
 
 	;
 	
@@ -107,30 +113,25 @@ int main(int ac,char*av[])
 	}	
 	po::notify(vm);
 	
-	if (vm.count("help") || !vm.count("op"))
+	if(vm.count("help"))
 	{
 		std::cout << opt << std::endl;
 	}
-	else
+	if(vm.count("appendToFile"))
 	{
-		try
-		{
-			const std::string op = vm["appendToFile"].as<std::string>();
-			const int lhs = vm["lhs"].as<int>();
-			const int rhs = vm["rhs"].as<int>();
-			if (op == "add")
-			{
-				std::cout << lhs + rhs << std::endl;
-			}
-			if (op == "sub")
-			{
-				std::cout << lhs - rhs << std::endl;
-			}
-		}
-		catch(const boost::bad_any_cast& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-	}	
+	}
+*/
+	if(2 >ac )
+	{
+		cout << constStrDecs << endl;
+		return 0;
+	}
+	string action(av[1]);
+	vector<string> params;
+	for(int i = 2 ;i < ac;i++)
+	{
+		params.push_back(av[i]);
+	}
+	MadoopInternal::ProgramOptions opt(action,params);
 	return 0;
 }

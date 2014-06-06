@@ -1,9 +1,9 @@
-#ifdef __MDFS_H__
-#define __MDFS_H__
+#ifndef __MDFS_HPP__
+#define __MDFS_HPP__
 namespace Madoop
 {
-	class mdfs
-	 {
+	class Mdfs
+	{
 	};
 }
-#endif // __MDFS_H__
+#endif // __MDFS_HPP__
