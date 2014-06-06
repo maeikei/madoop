@@ -47,7 +47,7 @@ Usage: hadoop fs [generic options]
 */
 
 static const string constStrDecs =
-"Usage: mdfs.client [generic options]\n"
+"Usage: mdfs.client \n"
 "        [-appendToFile <localsrc> ... <dst>]\n"
 "        [-cat [-ignoreCrc] <src> ...]\n"
 "        [-checksum <src> ...]\n"
