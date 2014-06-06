@@ -18,8 +18,8 @@ namespace Madoop
 		*   @param None
 		*   @return None
 		*/
-
 		mdfsFile();
+
 		/** Constructor
 		*   @param path file path
 		*   @return None
@@ -37,8 +37,8 @@ namespace Madoop
 		*   @param None
 		*   @return None
 		*/
-
 		mdfsDir();
+
 		/** Constructor
 		*   @param path directory path
 		*   @return None
@@ -57,11 +57,11 @@ namespace Madoop
 		*   @return None
 		*/
 		mdfsFS();
+
 		/** Constructor
 		*   @param confPath configure's path
 		*   @return None
 		*/
-
 		mdfsFS(const string &confPath);
 	private:
 		///
