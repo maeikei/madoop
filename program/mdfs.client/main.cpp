@@ -115,7 +115,7 @@ int main(int ac,char*av[])
 	{
 		try
 		{
-			const std::string op = vm["op"].as<std::string>();
+			const std::string op = vm["appendToFile"].as<std::string>();
 			const int lhs = vm["lhs"].as<int>();
 			const int rhs = vm["rhs"].as<int>();
 			if (op == "add")
