@@ -16,6 +16,16 @@ namespace MadoopInternal
 		:_action(action)
 		,_params(params)
 		{}
+		/** @brief parse actions
+		*   @param None.
+		*   @return None.
+		*/
+		void parse(void);
+		/** @brief do actions
+		*   @param None.
+		*   @return 0 succuss.
+		*/
+		int doAction(void);
 	private:
 		/** @brief constructor
 		 *

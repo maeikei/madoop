@@ -133,5 +133,8 @@ int main(int ac,char*av[])
 		params.push_back(av[i]);
 	}
 	MadoopInternal::ProgramOptions opt(action,params);
+	opt.parse();
+	opt.doAction();
 	return 0;
 }
+
