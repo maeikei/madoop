@@ -3,3 +3,9 @@ function (add_madoop_executable name )
 	add_executable(${name} ${ARGN} )
 	target_link_libraries(${name} boost_program_options)
 endfunction(add_madoop_executable)
+
+
+function (add_madoop_library name )
+	include_directories(${CMAKE_SOURCE_DIR}/interface/cpp)
+	add_library(${name} ${ARGN} )
+endfunction(add_madoop_library)

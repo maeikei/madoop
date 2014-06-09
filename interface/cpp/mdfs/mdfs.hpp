@@ -1,13 +1,30 @@
 #ifndef __MDFS_HPP__
 #define __MDFS_HPP__
 #include <string>
+#include <exception>
 using namespace std;
+
+
 namespace Madoop
 {
 	class mdfsFile;
 	class mdfsDir;
 	class mdfsFS;
 	class mdfsException;
+
+	
+	/**
+	 *  mdfsException class. exceptions.
+	 */
+	class mdfsException :public exception
+	{
+	public:
+		/** Constructor.
+		*   @param None.
+		*   @return None.
+		*/
+		mdfsException();
+	};
 	
 	/**
 	 *  mdfsDir class. Madoop distributed file systems file.
@@ -94,5 +111,6 @@ namespace Madoop
 		///
 		string _confPath;
 	};
+	
 }
 #endif // __MDFS_HPP__
