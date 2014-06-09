@@ -9,4 +9,4 @@ clean:
 test-mdfs.client:build
 	$(BUILD_DIR)/program/mdfs.client/mdfs.client
 #	$(BUILD_DIR)/program/mdfs.client/mdfs.client -usage
-	$(BUILD_DIR)/program/mdfs.client/mdfs.client -cp ./README.md/ mdfs://
+	$(BUILD_DIR)/program/mdfs.client/mdfs.client -cp ./README.md mdfs:///README.md

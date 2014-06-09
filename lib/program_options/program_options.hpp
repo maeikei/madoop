@@ -1,6 +1,5 @@
 #ifndef __PROGRAM_OPTIONS_HPP__
 #define __PROGRAM_OPTIONS_HPP__
-
 #include <string>
 #include <vector>
 using namespace std;
