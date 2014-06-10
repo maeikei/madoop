@@ -1,0 +1,5 @@
+add_subdirectory(bridgenode)
+add_subdirectory(client)
+add_subdirectory(datanode)
+add_subdirectory(env)
+add_subdirectory(namenode)

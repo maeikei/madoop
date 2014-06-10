@@ -1,12 +1,16 @@
-BUILD_DIR  := object
+BUILD_DIR    := $(shell pwd)/object
+INSTALL_DIR  := $(shell pwd)/package
+SRC_DIR      := $(shell pwd)
 .PHONY :build clean test-mdfs.client
 build:
 	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR) && cmake ../ && make
+	mkdir -p $(INSTALL_DIR)
+	cd $(BUILD_DIR) && cmake -DCMAKE_INSTALL_PREFIX=$(INSTALL_DIR) $(SRC_DIR) && make && make install
 clean:
-	rm -r $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)
+	rm -rf $(INSTALL_DIR)
 
 test-mdfs.client:build
-	$(BUILD_DIR)/program/mdfs.client/mdfs.client
-#	$(BUILD_DIR)/program/mdfs.client/mdfs.client -usage
-	$(BUILD_DIR)/program/mdfs.client/mdfs.client -cp ./README.md mdfs:///README.md
+	$(INSTALL_DIR)/bin/mdfs.client
+#	$(INSTALL_DIR)/bin/mdfs.client -usage
+	$(INSTALL_DIR)/bin/mdfs.client -cp ./README.md mdfs:///README.md
