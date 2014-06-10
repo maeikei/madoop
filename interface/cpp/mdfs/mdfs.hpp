@@ -2,7 +2,7 @@
 #define __MDFS_HPP__
 #include <string>
 #include <exception>
-using namespace std;
+//using namespace std;
 
 
 namespace Madoop
@@ -16,7 +16,7 @@ namespace Madoop
 	/**
 	 *  mdfsException class. exceptions.
 	 */
-	class mdfsException :public exception
+	class mdfsException :public std::exception
 	{
 	public:
 		/** Constructor.
@@ -42,7 +42,7 @@ namespace Madoop
 		*   @param path file path.
 		*   @return None.
 		*/
-		mdfsFile(const string &path);
+		mdfsFile(const std::string &path);
 		
 		/** write mdfs file from memory.
 		*   @param mem content in memory.
@@ -55,7 +55,7 @@ namespace Madoop
 		*   @param local file path.
 		*   @return None.
 		*/
-		void write(const string &locPath) throw (mdfsException);
+		void write(const std::string &locPath) throw (mdfsException);
 
 		/** read mdfs file to memory.
 		*   @param mem file path.
@@ -68,7 +68,7 @@ namespace Madoop
 		*   @param local file path
 		*   @return None
 		*/
-		void read(const string &locPath) throw (mdfsException);
+		void read(const std::string &locPath) throw (mdfsException);
 	};
 
 	/**
@@ -109,7 +109,7 @@ namespace Madoop
 		mdfsFS(const string &confPath);
 	private:
 		///
-		string _confPath;
+		std::string _confPath;
 	};
 	
 }

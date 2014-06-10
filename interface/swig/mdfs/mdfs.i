@@ -1,5 +1,5 @@
 %module mdfs
 %{
-#include "mdfs.hpp"
+#include "mdfs/mdfs.hpp"
 %}
-%include mdfs.hpp
+%include mdfs/mdfs.hpp
