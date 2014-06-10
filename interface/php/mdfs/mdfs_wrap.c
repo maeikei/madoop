@@ -1058,6 +1058,7 @@ extern "C" {
 
 
 #include "mdfs/mdfs.hpp"
+using namespace Madoop
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */

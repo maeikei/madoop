@@ -1804,6 +1804,7 @@ static VALUE mMdfs;
 
 
 #include "mdfs/mdfs.hpp"
+using namespace Madoop
 
 SWIGINTERN VALUE
 _wrap_Madoop_get(VALUE self) {

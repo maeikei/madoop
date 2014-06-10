@@ -188,6 +188,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 
 #include "mdfs/mdfs.hpp"
+using namespace Madoop
 
 
 #ifdef __cplusplus
