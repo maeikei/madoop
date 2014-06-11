@@ -87,7 +87,7 @@ namespace Madoop
 		*   @param path directory path.
 		*   @return None.
 		*/
-		mdfsDir(const string &path);
+		mdfsDir(const std::string &path);
 	};
 
 	/**
@@ -106,7 +106,7 @@ namespace Madoop
 		*   @param confPath configure's path.
 		*   @return None.
 		*/
-		mdfsFS(const string &confPath);
+		mdfsFS(const std::string &confPath);
 	private:
 		///
 		std::string _confPath;
