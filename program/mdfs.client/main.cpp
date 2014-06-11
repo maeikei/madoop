@@ -90,6 +90,7 @@ namespace po = boost::program_options;
 
 
 #include "program_options.hpp"
+#include "clientEnv.hpp"
 
 int main(int ac,char*av[])
 {
@@ -126,6 +127,13 @@ int main(int ac,char*av[])
 		cout << constStrDecs << endl;
 		return 0;
 	}
+	string arv0(av[0]);
+	MadoopInternal::ClientEnv env(arv0);
+	if(false == env.setup())
+	{
+		return 0;
+	}
+	
 	string action(av[1]);
 	vector<string> params;
 	for(int i = 2 ;i < ac;i++)
