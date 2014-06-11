@@ -9,7 +9,8 @@ using namespace MadoopInternal;
 ProgramOptions::ProgramOptions(const string &action,const vector<string> &params)
 :_action(action)
 ,_params(params)
-{}
+{
+}
 
 /** @brief parse actions
 *   @param None.
