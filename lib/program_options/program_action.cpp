@@ -1,4 +1,4 @@
-#include "program_options.hpp"
+#include "program_action.hpp"
 using namespace MadoopInternal;
 
 
@@ -6,24 +6,23 @@ using namespace MadoopInternal;
 /** @brief constructor
  *
 */
-ProgramOptions::ProgramOptions(const string &action,const vector<string> &params)
+ProgramActions::ProgramActions(const string &action,const vector<string> &params)
 :_action(action)
 ,_params(params)
-{
-}
+{}
 
 /** @brief parse actions
 *   @param None.
 *   @return None.
 */
-void ProgramOptions::parse(void)
+void ProgramActions::parse(void)
 {
 }
 /** @brief do actions
 *   @param None.
 *   @return 0 succuss.
 */
-int ProgramOptions::doAction(void)
+int ProgramActions::doAction(void)
 {
 	int ret = 0;
 	return ret;

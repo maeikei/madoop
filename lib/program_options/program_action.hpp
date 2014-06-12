@@ -6,13 +6,13 @@ using namespace std;
 
 namespace MadoopInternal
 {
-	class ProgramOptions
+	class ProgramActions
 	{
 	public:
 		/** @brief constructor
 		 *
 		*/
-		ProgramOptions(const string &action,const vector<string> &params);
+		ProgramActions(const string &action,const vector<string> &params);
 
 		/** @brief parse actions
 		*   @param None.
@@ -25,13 +25,13 @@ namespace MadoopInternal
 		*   @return 0 succuss.
 		*/
 		int doAction(void);
-	private:
+	protected:
 		/** @brief constructor
 		 *
 		*/
-		ProgramOptions();
+		ProgramActions();
 		
-	private:
+	protected:
 		/// 
 		string _action;
 		///

@@ -44,31 +44,65 @@ namespace Madoop
 		*/
 		mdfsFile(const std::string &path);
 		
-		/** write mdfs file from memory.
-		*   @param mem content in memory.
+		/** Constructor.
+		*   @param mdf file.
+		*   @return None.
+		*/
+		mdfsFile(const mdfsFile &mdf);
+
+		/** write mdfs file from local memory.
+		*   @param localMem content in memory.
 		*   @param size content size.
 		*   @return None.
 		*/
-		void write(const void* mem,size_t size) throw (mdfsException);
+		void write(const void* localMem,size_t size) throw (mdfsException);
 		
 		/** write mdfs file from local file.
-		*   @param local file path.
+		*   @param localPath local file path.
 		*   @return None.
 		*/
-		void write(const std::string &locPath) throw (mdfsException);
+		void write(const std::string &localPath) throw (mdfsException);
 
-		/** read mdfs file to memory.
-		*   @param mem file path.
+		/** write mdfs file from mdfs file.
+		*   @param mdf to be written.
+		*   @return None.
+		*/
+		void write(const mdfsFile &mdf) throw (mdfsException);
+
+		/** append mdfs file from local memory.
+		*   @param localMem content in memory.
+		*   @param size content size.
+		*   @return None.
+		*/
+		void append(const void* localMem,size_t size) throw (mdfsException);
+		
+		/** append mdfs file from local file.
+		*   @param localPath local file path.
+		*   @return None.
+		*/
+		void append(const std::string &localPath) throw (mdfsException);
+
+		/** append mdfs file from mdfs file.
+		*   @param mdf to be written.
+		*   @return None.
+		*/
+		void append(const mdfsFile &mdf) throw (mdfsException);
+
+		
+		/** read mdfs file to local memory.
+		*   @param localMem file path.
 		*   @param size buffer size.
 		*   @return read size.
 		*/
-		size_t read(const void* mem,size_t size) throw (mdfsException);
+		size_t read(const void* localMem,size_t size) throw (mdfsException);
 		
 		/** read mdfs file to local file
-		*   @param local file path
+		*   @param localPath local file path
 		*   @return None
 		*/
-		void read(const std::string &locPath) throw (mdfsException);
+		void read(const std::string &localPath) throw (mdfsException);
+	private:
+		mdfsFS *_mdfs;
 	};
 
 	/**
@@ -87,7 +121,9 @@ namespace Madoop
 		*   @param path directory path.
 		*   @return None.
 		*/
-		mdfsDir(const string &path);
+		mdfsDir(const std::string &path);
+	private:
+		mdfsFS *_mdfs;
 	};
 
 	/**
@@ -106,7 +142,7 @@ namespace Madoop
 		*   @param confPath configure's path.
 		*   @return None.
 		*/
-		mdfsFS(const string &confPath);
+		mdfsFS(const std::string &confPath);
 	private:
 		///
 		std::string _confPath;

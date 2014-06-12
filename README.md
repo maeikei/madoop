@@ -5,4 +5,4 @@ LLVM Based Native Hadoop implementation,provide interface for about all script l
 Multi Arch,mini resource.
 
 System Requirement:  
-	swig 3.0.1
+	swig 3.0.1~

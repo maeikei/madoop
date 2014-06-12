@@ -24,5 +24,7 @@
 object
 #package
 package
+#analyzer
+analyzer
 #hadoop-
 hadoop-*

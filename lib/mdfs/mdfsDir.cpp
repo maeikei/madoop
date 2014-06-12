@@ -1,4 +1,5 @@
 #include "mdfs/mdfs.hpp"
+using namespace std;
 using namespace Madoop;
 
 
