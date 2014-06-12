@@ -1,6 +1,8 @@
+SRC_DIR      := $(shell pwd)
 BUILD_DIR    := $(shell pwd)/object
 INSTALL_DIR  := $(shell pwd)/package
-SRC_DIR      := $(shell pwd)
+ANALYZER_DIR := $(shell pwd)/analyzer
+
 .PHONY :build clean test-mdfs.client
 build:
 	mkdir -p $(BUILD_DIR)
@@ -14,3 +16,7 @@ test-mdfs.client:build
 	$(INSTALL_DIR)/bin/mdfs.client
 #	$(INSTALL_DIR)/bin/mdfs.client -usage
 	$(INSTALL_DIR)/bin/mdfs.client -cp ./README.md mdfs:///README.md
+
+scan-build:build
+	mkdir -p $(ANALYZER_DIR)
+	cd $(BUILD_DIR) && scan-build -o $(ANALYZER_DIR) make -j4
