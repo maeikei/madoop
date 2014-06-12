@@ -10,6 +10,10 @@ using namespace std;
 #include <boost/filesystem/fstream.hpp>
 namespace fs = boost::filesystem;
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+namespace pt = boost::property_tree;
+
 namespace MadoopInternal
 {
 	class CommonEnv
@@ -25,6 +29,13 @@ namespace MadoopInternal
 		*   @return true success,false fail.
 		*/
 		virtual bool setup(void);
+
+	protected:
+		/** @brief read json confiure.
+		*   @param None.
+		*   @return true success,false fail.
+		*/
+		void readJson(const string &path,pt::ptree &pt);
 	private:
 		/** @brief constructor
 		 *
@@ -33,7 +44,8 @@ namespace MadoopInternal
 		
 	protected:
 		const string _argv0;
-		fs::path _root;
+		fs::path _confRoot;
+		vector<string> _namenodes;
 	};
 }
 #endif // __COMMON_ENV_HPP__

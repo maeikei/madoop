@@ -5,11 +5,17 @@ using namespace MadoopInternal;
 #include <cstdlib>
 #include <cstdio>
 
+
+#include <boost/log/trivial.hpp>
+
+
 /** @brief constructor
 *   @param argv0 arvv[0].
 */
 CommonEnv::CommonEnv(const string &argv0)
 :_argv0(argv0)
+,_confRoot()
+,_namenodes()
 {
 }
 
@@ -52,10 +58,22 @@ bool CommonEnv::setup(void)
 	{
 		/// to be test in many system.
 	}
-	cout << program << endl;
-	fs::path confpath;
-	confpath = program.parent_path().parent_path();
-	confpath += "/conf";
-	cout << confpath << endl;
+	BOOST_LOG_TRIVIAL(trace) << program << endl;
+	_confRoot = program.parent_path().parent_path();
+	_confRoot += "/conf";
+	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
 	return true;
 }
+
+/** @brief read json confiure.
+*   @param None.
+*   @return true success,false fail.
+*/
+void CommonEnv::readJson(const string &path,pt::ptree &pt)
+{
+	_confRoot += "/" + path;
+	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
+	pt::read_json(_confRoot.string(), pt);
+}
+
+
