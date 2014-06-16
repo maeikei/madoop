@@ -48,7 +48,7 @@ bool ClientEnv::setup(void)
 	}
 	for (const auto &node : _namenodes)
 	{
-		BOOST_LOG_TRIVIAL(trace) << node << endl;
+		BOOST_LOG_TRIVIAL(info) << node << endl;
 	}
 	return true;
 }

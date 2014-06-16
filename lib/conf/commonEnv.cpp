@@ -7,7 +7,8 @@ using namespace MadoopInternal;
 
 
 #include <boost/log/trivial.hpp>
-
+#include <boost/log/utility/setup.hpp>
+namespace logging = boost::log;
 
 /** @brief constructor
 *   @param argv0 arvv[0].
@@ -17,6 +18,15 @@ CommonEnv::CommonEnv(const string &argv0)
 ,_confRoot()
 ,_namenodes()
 {
+	logging::add_common_attributes();
+#ifdef _DEBUG
+// do nothing
+#else
+	logging::core::get()->set_filter(
+     	logging::trivial::severity >= logging::trivial::info
+     );
+#endif
+
 }
 
 /** @brief parse actions
