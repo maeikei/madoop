@@ -30,25 +30,27 @@ bool ClientEnv::setup(void)
 		return false;
 	}
 	_confRoot += "/client";
+	
+	
 	 BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
 	try
 	{
 		pt::ptree pt;
 		readJson("server.client.conf.json",pt);
 		
-		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("namenodes"))
+		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("rootnodes"))
 		{
 			BOOST_LOG_TRIVIAL(trace) << v.second.data() << endl;
-			_namenodes.push_back(v.second.data());
+			_worldnodes.push_back(v.second.data());
 	    }
 	}
 	catch(std::exception const& e)
 	{
 		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
 	}
-	for (const auto &node : _namenodes)
+	for (const auto &node : _worldnodes)
 	{
-		BOOST_LOG_TRIVIAL(info) << node << endl;
+		BOOST_LOG_TRIVIAL(info) << "Contract to this servers for global information " << node << endl;
 	}
 	return true;
 }

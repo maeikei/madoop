@@ -16,6 +16,8 @@ namespace logging = boost::log;
 CommonEnv::CommonEnv(const string &argv0)
 :_argv0(argv0)
 ,_confRoot()
+,_confAutoGen()
+,_worldnodes()
 ,_namenodes()
 {
 	logging::add_common_attributes();
@@ -72,8 +74,32 @@ bool CommonEnv::setup(void)
 	_confRoot = program.parent_path().parent_path();
 	_confRoot += "/conf";
 	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
+
+	_confAutoGen = _confRoot;
+	_confAutoGen += "/autogen";
+	BOOST_LOG_TRIVIAL(trace) << _confAutoGen << endl;
 	return true;
 }
+
+/** @brief set up world nodes
+*   @param None.
+*   @return true success,false fail.
+*/
+bool CommonEnv::setupWorldNodes(void)
+{
+	return true;
+}
+
+
+/** @brief set up name nodes
+*   @param None.
+*   @return true success,false fail.
+*/
+bool CommonEnv::setupNameNodes(void)
+{
+	return true;
+}
+
 
 /** @brief read json confiure.
 *   @param None.

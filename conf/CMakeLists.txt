@@ -1,3 +1,4 @@
+add_subdirectory(autogen)
 add_subdirectory(bridgenode)
 add_subdirectory(client)
 add_subdirectory(datanode)
