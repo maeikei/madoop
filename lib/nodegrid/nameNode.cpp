@@ -1,4 +1,4 @@
-#include "worldNode.hpp"
+#include "nameNode.hpp"
 using namespace MadoopInternal;
 
 
@@ -15,7 +15,7 @@ using namespace MadoopInternal;
 *   @param host hostname or ip address.
 *   @return None.
 */
-WorldNode::WorldNode(const string &host)
+NameNode::NameNode(const string &host)
 {
 }
 

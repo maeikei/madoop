@@ -1,4 +1,4 @@
-#include "worldGrid.hpp"
+#include "nameGrid.hpp"
 using namespace MadoopInternal;
 
 
@@ -15,7 +15,17 @@ using namespace MadoopInternal;
 *   @param None.
 *   @return None.
 */
-WorldGrid::WorldGrid()
+NameGrid::NameGrid()
 {
+}
+
+/** @brief get union object of grid.
+*   @param None
+*   @return object
+*/
+NameGrid &NameGrid::getInstance(void)
+{
+	static NameGrid instance;
+	return instance;
 }
 

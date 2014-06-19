@@ -19,3 +19,14 @@ WorldGrid::WorldGrid()
 {
 }
 
+
+/** @brief get union object of grid.
+*   @param None
+*   @return object
+*/
+WorldGrid &WorldGrid::getInstance(void)
+{
+	static WorldGrid instance;
+	return instance;
+}
+

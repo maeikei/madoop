@@ -1,5 +1,5 @@
-#ifndef __WORLD_GRID_ENV_HPP__
-#define __WORLD_GRID_ENV_HPP__
+#ifndef __NAME_GRID_ENV_HPP__
+#define __NAME_GRID_ENV_HPP__
 #include <string>
 #include <vector>
 using namespace std;
@@ -7,15 +7,20 @@ using namespace std;
 
 namespace MadoopInternal
 {
-	class WorldGrid
+	class NameGrid
 	{
 	public:
+	    /** @brief get union object of grid.
+	    *   @param None
+	    *   @return object
+	    */
+	    static NameGrid &getInstance(void);
+	private:
 		/** @brief constructor
 		*   @param None.
 		*   @return None.
 		*/
-		WorldGrid();
-	private:
+		NameGrid();
 	};
 }
-#endif // __WORLD_GRID_ENV_HPP__
+#endif // __NAME_GRID_ENV_HPP__

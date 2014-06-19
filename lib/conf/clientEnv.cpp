@@ -32,7 +32,7 @@ bool ClientEnv::setup(void)
 	_confRoot += "/client";
 	
 	
-	 BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
+	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
 	try
 	{
 		pt::ptree pt;
@@ -48,10 +48,13 @@ bool ClientEnv::setup(void)
 	{
 		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
 	}
+	
 	for (const auto &node : _worldnodes)
 	{
 		BOOST_LOG_TRIVIAL(info) << "Contract to this servers for global information " << node << endl;
 	}
+	
+	
 	return true;
 }
 

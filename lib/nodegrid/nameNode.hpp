@@ -1,5 +1,5 @@
-#ifndef __WORLD_NODE_ENV_HPP__
-#define __WORLD_NODE_ENV_HPP__
+#ifndef __NAME_NODE_ENV_HPP__
+#define __NAME_NODE_ENV_HPP__
 #include <string>
 #include <vector>
 using namespace std;
@@ -7,20 +7,20 @@ using namespace std;
 
 namespace MadoopInternal
 {
-	class WorldNode
+	class NameNode
 	{
 	public:
 		/** @brief constructor
 		*   @param host hostname or ip address.
 		*   @return None.
 		*/
-		WorldNode(const string &host);
+		NameNode(const string &host);
 	private:
 		/** @brief constructor
 		*   @param None.
 		*   @return None.
 		*/
-		WorldNode();
+		NameNode();
 	};
 }
-#endif // __WORLD_NODE_ENV_HPP__
+#endif // __NAME_NODE_ENV_HPP__
