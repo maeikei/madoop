@@ -15,7 +15,6 @@ clean:
 
 test-mdfs.client:build
 	$(INSTALL_DIR)/bin/mdfs.client
-#	$(INSTALL_DIR)/bin/mdfs.client -usage
 	$(INSTALL_DIR)/bin/mdfs.client -copyFromLocal ./README.md mdfs:///README.md
 	$(INSTALL_DIR)/bin/mdfs.client -copyToLocal mdfs:///README.md ./README.md 
 
