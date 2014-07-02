@@ -19,13 +19,14 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cassert>
 
 #include <exception>
 #include <stdexcept>
 
-#include "functional.h"
+#include <functional>
 
-#include "atomic.h"
+#include <atomic>
 #include "barrier.h"
 #include "buffer_queue.h"
 #include "countdown_latch.h"
@@ -58,11 +59,11 @@ std::atomic<int> filter_thread_point_count(0);
 std::atomic<int> filter_count(0);
 std::atomic<int> segment_count(0);
 
-static mutex qcount_lock_;
+static std::mutex qcount_lock_;
 static int qcount_ = 0;
 static vector<string> qnames_;
 const char* get_q_name(const char* prefix) {
-  unique_lock<mutex> l(qcount_lock_);
+  std::unique_lock<std::mutex> l(qcount_lock_);
   std::stringstream new_name;
   new_name << prefix << "-" << ++qcount_;
   qnames_.push_back(new_name.str());
@@ -174,7 +175,7 @@ void run_simple_function(queue_front<IN> in_queue,
   while (1) {
     IN in;
     queue_op_status status = in_queue.wait_pop(in);
-    if (status != CXX11_ENUM_QUAL(queue_op_status)success) {
+    if (status != queue_op_status::success) {
       break;  // Queue closed
     }
     out_queue.push(func(in));
@@ -193,7 +194,7 @@ void run_multi_out_function(queue_front<IN> in_queue,
   while (1) {
     IN in;
     queue_op_status status = in_queue.wait_pop(in);
-    if (status != CXX11_ENUM_QUAL(queue_op_status)success) {
+    if (status != queue_op_status::success) {
       break;  // Queue closed
     }
     func(in, out_queue);
@@ -238,7 +239,7 @@ void run_consumer(queue_front<IN> in_queue,
   while (1) {
     IN in;
     queue_op_status status = in_queue.wait_pop(in);
-    if (status != CXX11_ENUM_QUAL(queue_op_status)success) {
+    if (status != queue_op_status::success) {
       break;  // Queue closed
     }
     func(in);
@@ -283,7 +284,7 @@ void run_queue_internal(queue_front<T> ft, queue_back<T> bk) {
   while (1) {
     T t;
     queue_op_status status = ft.wait_pop(t);
-    if (status != CXX11_ENUM_QUAL(queue_op_status)success) {
+    if (status != queue_op_status::success) {
       return;  // Queue closed
     }
     bk.push(t);

@@ -20,8 +20,7 @@
 #include <iterator>
 #include <iostream>
 
-#include "cxx11.h"
-#include "atomic.h"
+#include <atomic>
 
 namespace gcl {
 
@@ -85,7 +84,7 @@ class queue_front_iter
     value_type v_;
 };
 
-CXX11_ENUM_CLASS queue_op_status
+enum queue_op_status
 {
     success = 0,
     empty,
@@ -129,10 +128,8 @@ class generic_queue_back
     //FIX generic_queue_back() CXX11_DEFAULTED_EASY
     generic_queue_back(Queue& queue) : queue_(&queue) { }
     generic_queue_back(Queue* queue) : queue_(queue) { }
-    generic_queue_back(const generic_queue_back& other)
-        CXX11_DEFAULTED_HARD( : queue_(other.queue_) { } )
-    generic_queue_back& operator =(const generic_queue_back& other)
-        CXX11_DEFAULTED_HARD( { queue_ = other.queue_; return *this; } )
+    generic_queue_back(const generic_queue_back& other): queue_(other.queue_) { }
+    generic_queue_back& operator =(const generic_queue_back& other){ queue_ = other.queue_; return *this; }
 
     void close() { queue_->close(); }
     bool is_closed() { return queue_->is_closed(); }
@@ -182,10 +179,8 @@ class generic_queue_front
     //FIX generic_queue_front() CXX11_DEFAULTED_EASY
     generic_queue_front(Queue& queue) : queue_(&queue) { }
     generic_queue_front(Queue* queue) : queue_(queue) { }
-    generic_queue_front(const generic_queue_front& other)
-        CXX11_DEFAULTED_HARD( : queue_(other.queue_) { } )
-    generic_queue_front& operator =(const generic_queue_front& other)
-        CXX11_DEFAULTED_HARD( { queue_ = other.queue_; return *this; } )
+    generic_queue_front(const generic_queue_front& other): queue_(other.queue_) { }
+    generic_queue_front& operator =(const generic_queue_front& other){ queue_ = other.queue_; return *this; }
 
     void close() { queue_->close(); }
     bool is_closed() { return queue_->is_closed(); }
@@ -216,7 +211,7 @@ queue_back_iter<Queue>&
 queue_back_iter<Queue>::operator =(const value_type& value)
 {
     queue_op_status s = q_->wait_push(value);
-    if ( s != CXX11_ENUM_QUAL(queue_op_status)success ) {
+    if ( s != success ) {
         q_ = NULL;
         throw s;
     }
@@ -228,7 +223,7 @@ void
 queue_front_iter<Queue>::next()
 {
     queue_op_status s = q_->wait_pop(v_);
-    if ( s == CXX11_ENUM_QUAL(queue_op_status)closed )
+    if ( s == closed )
         q_ = NULL;
 }
 
@@ -271,7 +266,7 @@ class queue_back
 : public generic_queue_back< queue_base<Value> >
 {
   public:
-    queue_back() CXX11_DEFAULTED_EASY
+    queue_back(){}
     queue_back(queue_base<Value>& queue)
         : generic_queue_back< queue_base<Value> >(queue) { }
     queue_back(queue_base<Value>* queue)
@@ -285,7 +280,7 @@ class queue_front
 : public generic_queue_front< queue_base<Value> >
 {
   public:
-    queue_front() CXX11_DEFAULTED_EASY
+    queue_front(){}
     queue_front(queue_base<Value>& queue)
         : generic_queue_front< queue_base<Value> >(queue) { }
     queue_front(queue_base<Value>* queue)
@@ -575,7 +570,7 @@ class queue_owner
     typedef value_type& reference;
     typedef const value_type& const_reference;
 
-    queue_owner(const queue_owner&) CXX11_DELETED
+    queue_owner(const queue_owner&){}
     queue_owner(Queue* arg) : ptr(arg) { }
 
     virtual ~queue_owner() { delete ptr; }
@@ -632,7 +627,7 @@ class queue_object
     typedef value_type& reference;
     typedef const value_type& const_reference;
 
-    queue_object(const queue_object&) CXX11_DELETED
+    queue_object(const queue_object&){}
 #ifdef HAS_CXX11_VARIADIC_TMPL
     template <typename ... Args>
     queue_object(Args ... args) : obj_(args...) { }
@@ -708,7 +703,7 @@ std::pair< shared_queue_back<typename Queue::value_type>,
 share_queue_ends(Arg arg)
 {
   typedef typename Queue::value_type elemtype;
-  CXX11_AUTO_VAR( q, new queue_object<Queue>(arg) );
+  auto q = new queue_object<Queue>(arg);
   return std::make_pair(shared_queue_back<elemtype>(q),
                         shared_queue_front<elemtype>(q));
 }
@@ -719,7 +714,7 @@ std::pair< shared_queue_back<typename Queue::value_type>,
 share_queue_ends(Arg1 arg1, Arg2 arg2)
 {
   typedef typename Queue::value_type elemtype;
-  CXX11_AUTO_VAR( q, new queue_object<Queue>(arg1, arg2) );
+  auto q = new queue_object<Queue>(arg1, arg2);
   return std::make_pair(shared_queue_back<elemtype>(q),
                         shared_queue_front<elemtype>(q));
 }

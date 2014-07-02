@@ -22,24 +22,25 @@
 #include <math.h>
 #include <string.h>
 
-#include <tr1/functional>
+#include <functional>
 #include <vector>
 
 #include <buffer_queue.h>
-#include <thread.h>
+#include <thread>
 #include <iterator_queue.h>
 #include <source.h>
-#include <pipeline.h>
+//#include <pipeline.h>
+#include <simple_thread_pool.h>
 
-using std::tr1::bind;
+using std::bind;
 using std::vector;
 
 using gcl::iterator_queue;
 using gcl::simple_thread_pool;
 using gcl::source;
-using gcl::Pipeline;
+//using gcl::pipeline;
 
-#define PIPELINE 1
+//#define PIPELINE 1
 #define ERR_CHK 1
 //Precision to use for calculations
 #define fptype float
@@ -351,9 +352,9 @@ int main (int argc, char **argv)
     p.run(pool);//.wait();
 #else
     // Run the analysis using threads
-    thread* threads[nThreads];
+    std::thread* threads[nThreads];
     for(i=0; i<nThreads; i++) {
-      threads[i] = new thread(bind(&bs_thread, i));
+      threads[i] = new std::thread(bind(&bs_thread, i));
     }
 
     for(i=0; i<nThreads; i++) {
