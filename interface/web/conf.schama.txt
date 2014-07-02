@@ -1,0 +1,28 @@
+[global]
+    auth supported = cephx
+    keyring = /etc/ceph/keyring.admin
+
+[mds]
+    keyring = /etc/ceph/keyring.$name
+[mds.master]
+    host = [2408:212:3020:0:cee:44ff:fe60:cf41]
+
+
+[mon]
+    mon data = /mnt/hdd/cephfs/mon/$name
+[mon.0]
+    host = [2408:212:3020:0:cee:44ff:fe60:cf41]
+    mon addr = [2408:212:3020:0:cee:44ff:fe60:cf41]:6789
+
+
+
+[osd]
+    osd data = /mnt/hdd/cephfs/osd/$name
+    osd journal = /mnt/hdd/cephfs/osd/$name/journal
+    osd journal size = 512
+    osd class dir = /usr/lib64/rados-classes
+    keyring = /etc/ceph/keyring.$name
+
+[osd.0]
+    host = [2408:212:3020:0:cee:44ff:fe60:cf41]
+
