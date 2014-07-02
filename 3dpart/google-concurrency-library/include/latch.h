@@ -15,10 +15,9 @@
 #ifndef GCL_LATCH_
 #define GCL_LATCH_
 
-#include "cxx11.h"
-#include "atomic.h"
-#include "condition_variable.h"
-#include "mutex.h"
+#include <atomic>
+#include <condition_variable>
+#include <mutex>
 #include "scoped_guard.h"
 
 namespace gcl {
@@ -62,12 +61,12 @@ private:
   std::atomic_int waiting_;
 
   // The condition that blocks until the count reaches 0
-  condition_variable condition_;
-  mutex condition_mutex_;
+  std::condition_variable condition_;
+  std::mutex condition_mutex_;
 
  // Disallow copy and assign
-  latch(const latch&) CXX11_DELETED
-  latch& operator=(const latch&) CXX11_DELETED
+  latch(const latch&);
+  latch& operator=(const latch&);
 };
 
 }  // End namespace gcl

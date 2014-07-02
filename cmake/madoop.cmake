@@ -13,5 +13,6 @@ endfunction(add_madoop_executable)
 
 function (add_madoop_library name )
 	include_directories(${CMAKE_SOURCE_DIR}/interface/cpp)
+	include_directories(${CMAKE_SOURCE_DIR}/3dpart/google-concurrency-library/include)
 	add_library(${name} ${ARGN} )
 endfunction(add_madoop_library)

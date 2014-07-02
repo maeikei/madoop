@@ -11,11 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+#if 0 
 #include <iostream>
 #include <stdexcept>
 
-#include "mutex.h"
+#include <mutex>
 #include "test_mutex.h"
 
 using std::cerr;
@@ -23,8 +23,8 @@ using std::cerr;
 namespace MutexInternal {
 
 // Returns true if a thread id is null
-static bool isNull(thread::id id) {
-  return id == thread::id();
+static bool isNull(std::thread::id id) {
+  return id == std::thread::id();
 }
 
 // Utility class that combines a mutex and a condition variable. Does
@@ -102,7 +102,7 @@ struct MutexMonitor {
   MutexMonitor(int mutex_type) : type(mutex_type) {
   }
   int type;
-  thread::id locker;
+  std::thread::id locker;
   CompoundConditionVariable cv;
 };
 
@@ -319,3 +319,5 @@ void ThreadMonitor::OnThreadReleased(thread::id id) {
   ThreadLatch* latch = GetThreadLatch(id);
   latch->reset();
 }
+
+#endif

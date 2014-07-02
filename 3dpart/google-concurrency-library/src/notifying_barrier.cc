@@ -12,18 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <thread.h>
 
 #include "notifying_barrier.h"
 
 namespace gcl {
 using std::atomic;
 using std::memory_order;
-#if defined(__GXX_EXPERIMENTAL_CXX0X__)
 using std::bind;
-#else
-using std::tr1::bind;
-#endif
 
 notifying_barrier::~notifying_barrier() {
   while (!all_threads_exited()) {
@@ -48,7 +43,7 @@ bool notifying_barrier::all_threads_waiting() {
 
 void notifying_barrier::arrive_and_wait()  throw (std::logic_error) {
   {
-    unique_lock<mutex> lock(mutex_);
+    std::unique_lock<std::mutex> lock(mutex_);
     idle_.wait(lock, bind(&notifying_barrier::all_threads_exited, this));
     ++num_waiting_;
     if (num_waiting_ == thread_count_) {

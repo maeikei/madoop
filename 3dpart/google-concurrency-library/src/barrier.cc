@@ -12,18 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <thread.h>
+#include <thread>
 
 #include "barrier.h"
 
 namespace gcl {
 using std::atomic;
 using std::memory_order;
-#if defined(__GXX_EXPERIMENTAL_CXX0X__)
 using std::bind;
-#else
-using std::tr1::bind;
-#endif
 
 barrier::barrier(int num_threads) throw (std::invalid_argument)
     : thread_count_(num_threads),
@@ -31,7 +27,7 @@ barrier::barrier(int num_threads) throw (std::invalid_argument)
   if (num_threads < 0) {
     throw std::invalid_argument("num_threads is negative");
   }
-  std::atomic_init(&num_to_leave_, 0);
+  num_to_leave_ = ATOMIC_VAR_INIT(0);
 }
 
 barrier::~barrier() {
@@ -57,7 +53,7 @@ bool barrier::all_threads_waiting() {
 
 void barrier::arrive_and_wait() {
   {
-    unique_lock<mutex> lock(mutex_);
+    std::unique_lock<std::mutex> lock(mutex_);
     // TODO(alasdair): This can deadlock - fix it.
     idle_.wait(lock, bind(&barrier::all_threads_exited, this));
     ++num_waiting_;
@@ -77,7 +73,7 @@ void barrier::arrive_and_wait() {
 
 void barrier::arrive_and_drop() {
   {
-    unique_lock<mutex> lock(mutex_);
+    std::unique_lock<std::mutex> lock(mutex_);
     idle_.wait(lock, bind(&barrier::all_threads_exited, this));
     if (--thread_count_ == 0) {
       throw std::invalid_argument("All threads have left");

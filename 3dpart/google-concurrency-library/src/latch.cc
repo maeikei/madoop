@@ -16,21 +16,16 @@
 
 #include "latch.h"
 
-#include "mutex.h"
-#include "condition_variable.h"
+#include <mutex>
+#include <condition_variable>
 
 namespace gcl {
-#if defined(__GXX_EXPERIMENTAL_CXX0X__)
 using std::bind;
 using std::function;
-#else
-using std::tr1::bind;
-using std::tr1::function;
-#endif
 
 latch::latch(int count)
     : count_(count) {
-  std::atomic_init(&waiting_, 0);
+  waiting_ = ATOMIC_VAR_INIT(0);
 }
 
 latch::~latch() {
@@ -46,7 +41,7 @@ latch::~latch() {
 void latch::wait() {
   ++waiting_;
   {
-    unique_lock<mutex> lock(condition_mutex_);
+    std::unique_lock<std::mutex> lock(condition_mutex_);
     while(count_ > 0) {
       condition_.wait(lock);
     }
@@ -58,7 +53,7 @@ bool latch::try_wait() {
   ++waiting_;
   bool success;
   {
-    unique_lock<mutex> lock(condition_mutex_);
+    std::unique_lock<std::mutex> lock(condition_mutex_);
     success = (count_ == 0);
   }
   --waiting_;
@@ -66,7 +61,7 @@ bool latch::try_wait() {
 }
 
 void latch::count_down(int n) {
-  lock_guard<mutex> lock(condition_mutex_);
+  std::lock_guard<std::mutex> lock(condition_mutex_);
   if (count_ - n < 0) {
     throw std::logic_error("internal count == 0");
   }
@@ -83,7 +78,7 @@ void latch::arrive() {
 void latch::arrive_and_wait() {
   ++waiting_;
   {
-    unique_lock<mutex> lock(condition_mutex_);
+    std::unique_lock<std::mutex> lock(condition_mutex_);
     if (count_ == 0) {
       throw std::logic_error("internal count == 0");
     }

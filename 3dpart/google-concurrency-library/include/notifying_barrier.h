@@ -18,26 +18,17 @@
 #include <stddef.h>
 #include <stdexcept>
 
-#include <atomic.h>
-#include <condition_variable.h>
-#include <mutex.h>
+#include <atomic>
+#include <condition_variable>
+#include <mutex>
 #include "scoped_guard.h"
 
-#if defined(__GXX_EXPERIMENTAL_CXX0X__)
 #include <functional>
-#else
-#include <tr1/functional>
-#endif
 
 namespace gcl {
 using std::atomic;
-#if defined(__GXX_EXPERIMENTAL_CXX0X__)
 using std::bind;
 using std::function;
-#else
-using std::tr1::function;
-using std::tr1::bind;
-#endif
 
 // Allows a set of threads to wait until all threads have reached a
 // common point.
@@ -66,11 +57,12 @@ class notifying_barrier {
   int thread_count_;
   int new_thread_count_;
 
-  mutex mutex_;
-  condition_variable idle_;
-  condition_variable ready_;
+  std::mutex mutex_;
+  std::condition_variable idle_;
+  std::condition_variable ready_;
   int num_waiting_;
-  std::atomic_int num_to_leave_;
+  //std::atomic_int num_to_leave_;
+  std::atomic<int> num_to_leave_ = ATOMIC_VAR_INIT(0);
 
   function<int()> completion_fn_;
 };
@@ -82,7 +74,8 @@ notifying_barrier::notifying_barrier(int num_threads,
   if (num_threads == 0) {
     throw std::invalid_argument("num_threads is 0");
   }
-  std::atomic_init(&num_to_leave_, 0);
+  //std::atomic_init(&num_to_leave_, 0);
+  //ATOMIC_VAR_INIT(0);
 }
 
 }

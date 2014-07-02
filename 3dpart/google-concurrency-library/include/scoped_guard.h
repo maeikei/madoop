@@ -1,8 +1,6 @@
 #ifndef GCL_SCOPED_GUARD_
 #define GCL_SCOPED_GUARD_
 
-#include "cxx11.h"
-#include "functional.h"
 
 namespace gcl {
 
@@ -41,8 +39,8 @@ class scoped_guard {
   template<typename T>
   static void call(T t) { t(); };
 
-  scoped_guard(const scoped_guard&) CXX11_DELETED;
-  scoped_guard& operator=(const scoped_guard& other) CXX11_DELETED;
+  scoped_guard(const scoped_guard&);
+  scoped_guard& operator=(const scoped_guard& other);
   std::function<void ()> f_;
 };
 

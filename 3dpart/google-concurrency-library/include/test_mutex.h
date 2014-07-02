@@ -18,11 +18,11 @@
 #include <map>
 #include <iostream>
 
-#include "functional.h"
+#include <functional>
 
-#include "mutex.h"
-#include "condition_variable.h"
-#include "thread.h"
+#include <mutex>
+#include <condition_variable>
+#include <thread>
 
 // Prints debug messages. The output is locked to ensure that only
 // one thread can print at a time. Prints out the thread id at the
@@ -101,24 +101,24 @@ class ThreadMonitor {
 
   // Blocks the caller until the thread identified by "id" is blocked waiting
   // on a mutex or condition variable
-  void WaitUntilBlocked(thread::id id);
+  void WaitUntilBlocked(std::thread::id id);
 
   // Returns true if the given thread is blocked.
-  bool IsBlocked(thread::id id);
+  bool IsBlocked(std::thread::id id);
 
  protected:
-  friend class MutexInternal::_posix_mutex;
-  friend class ::condition_variable;
-  void OnThreadBlocked(thread::id id);
-  void OnThreadReleased(thread::id id);
+  //friend class MutexInternal::_posix_mutex;
+  //friend class ::condition_variable;
+  void OnThreadBlocked(std::thread::id id);
+  void OnThreadReleased(std::thread::id id);
 
  private:
   ThreadMonitor();
   ~ThreadMonitor();
-  ThreadLatch* GetThreadLatch(thread::id id);
+  ThreadLatch* GetThreadLatch(std::thread::id id);
 
   MutexInternal::CompoundConditionVariable* map_lock_;
-  typedef std::map<thread::id, ThreadLatch*> ThreadMap;
+  typedef std::map<std::thread::id, ThreadLatch*> ThreadMap;
 
   ThreadMap blocked_waiters_;
 
