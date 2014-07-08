@@ -1,7 +1,18 @@
 {
-	"entries":
-	[
-		"https://madoop.watorvapor.com",
-		"https://www.watorvapor.com/madoop"
-	]
+	"ipv4" :{
+		"entries":
+		[
+			"https://madoop.watorvapor.com",
+			"https://www.watorvapor.com/madoop"
+		]
+	},
+
+	"ipv6" :{
+		"entries":
+		[
+			"https://madoop.watorvapor.com",
+			"https://www.watorvapor.com/madoop"
+		]
+	}
+
 }
