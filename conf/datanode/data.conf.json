@@ -1,0 +1,13 @@
+{
+	"data":
+	{
+		"path": "/mnt/hdd/mdfs/data",
+		"limit": "none",
+	},
+	"meta":
+	{
+		"path": "/mnt/hdd/mdfs/meta",
+		"limit": "none",
+	}
+}
+

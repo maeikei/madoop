@@ -1,0 +1,19 @@
+{
+	"cpu":
+	{
+		"limit": 
+			{
+				"cores":"full",
+				"usage":"100%",
+			}
+	},
+	"mem":
+	{
+		"limit": 
+		{
+			"size" : "full",
+			"usage" : "100%",
+		}
+	}
+}
+

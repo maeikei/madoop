@@ -43,11 +43,6 @@ namespace MadoopInternal
 		*/
 		virtual bool setupWorldNodes(void);
 
-		/** @brief set up name nodes
-		*   @param None.
-		*   @return true success,false fail.
-		*/
-		virtual bool setupNameNodes(void);
 	private:
 		/** @brief constructor
 		 *
@@ -57,9 +52,7 @@ namespace MadoopInternal
 	protected:
 		const string _argv0;
 		fs::path _confRoot;
-		fs::path _confAutoGen;
 		vector<string> _worldnodes;
-		vector<string> _namenodes;
 	};
 }
 #endif // __COMMON_ENV_HPP__
