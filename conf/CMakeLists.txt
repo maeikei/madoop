@@ -1,7 +1,4 @@
-add_subdirectory(autogen)
 add_subdirectory(bridgenode)
-add_subdirectory(client)
 add_subdirectory(datanode)
-add_subdirectory(env)
-add_subdirectory(namenode)
 add_subdirectory(resourcenode)
+add_subdirectory(world)
