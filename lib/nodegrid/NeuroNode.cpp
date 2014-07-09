@@ -1,4 +1,4 @@
-#include "worldNode.hpp"
+#include "NeuroNode.hpp"
 using namespace MadoopInternal;
 
 
@@ -12,10 +12,10 @@ using namespace MadoopInternal;
 #include <boost/log/trivial.hpp>
 
 /** @brief constructor
-*   @param host hostname or ip address.
+*   @param uuid id.
 *   @return None.
 */
-WorldNode::WorldNode(const string &host)
+NeuroNode::NeuroNode(const string &uuid)
 {
 }
 

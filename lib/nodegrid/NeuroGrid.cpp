@@ -1,4 +1,4 @@
-#include "worldGrid.hpp"
+#include "NeuroGrid.hpp"
 using namespace MadoopInternal;
 
 
@@ -12,21 +12,10 @@ using namespace MadoopInternal;
 #include <boost/log/trivial.hpp>
 
 /** @brief constructor
-*   @param None.
+*   @param uuid id.
 *   @return None.
 */
-WorldGrid::WorldGrid()
+NeuroGrid::NeuroGrid(const string &uuid)
 {
-}
-
-
-/** @brief get union object of grid.
-*   @param None
-*   @return object
-*/
-WorldGrid &WorldGrid::getInstance(void)
-{
-	static WorldGrid instance;
-	return instance;
 }
 
