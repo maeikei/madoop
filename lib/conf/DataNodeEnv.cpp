@@ -1,4 +1,5 @@
-#include "clientEnv.hpp"
+#include "DataNodeEnv.hpp"
+#include "DataGrid.hpp"
 using namespace MadoopInternal;
 
 
@@ -14,7 +15,7 @@ using namespace MadoopInternal;
 /** @brief constructor
 *   @param argv0 arvv[0].
 */
-ClientEnv::ClientEnv(const string &argv0)
+DataNodeEnv::DataNodeEnv(const string &argv0)
 :CommonEnv(argv0)
 {
 }
@@ -23,24 +24,24 @@ ClientEnv::ClientEnv(const string &argv0)
 *   @param None.
 *   @return true success,false fail.
 */
-bool ClientEnv::setup(void)
+bool DataNodeEnv::setup(void)
 {
 	if( false == CommonEnv::setup())
 	{
 		return false;
 	}
-	_confRoot += "/client";
+	_confRoot += "/datanode";
 	
 	
 	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
 	try
 	{
 		pt::ptree pt;
-		readJson("server.client.conf.json",pt);
+		readJson("world.conf.json",pt);
 		
-		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("rootnodes"))
+		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("ipv6.entries"))
 		{
-			BOOST_LOG_TRIVIAL(trace) << v.second.data() << endl;
+			BOOST_LOG_TRIVIAL(trace) << __LINE__ << v.second.data() << endl;
 			_worldhosts.push_back(v.second.data());
 	    }
 	}
@@ -48,8 +49,11 @@ bool ClientEnv::setup(void)
 	{
 		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
 	}
-	
-	
+	if( false == CommonEnv::setupWorldGrid())
+	{
+		return false;
+	}
+	DataGrid &grid = DataGrid::getInstance();
 	return true;
 }
 

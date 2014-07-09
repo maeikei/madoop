@@ -18,6 +18,9 @@ test-mdfs.client:build
 	$(INSTALL_DIR)/bin/mdfs.client -copyFromLocal ./README.md mdfs:///README.md
 	$(INSTALL_DIR)/bin/mdfs.client -copyToLocal mdfs:///README.md ./README.md 
 
+test-mdfs.datanode:build
+	$(INSTALL_DIR)/bin/mdfs.datanode
+
 scan-build:
 	mkdir -p $(ANALYZER_DIR)
 	cd $(ANALYZER_DIR) && cmake $(SRC_DIR) && scan-build -k -o $(ANALYZER_DIR) make -j4

@@ -1,4 +1,4 @@
 set( SRC
 )
-add_executable(mdfs.bridgenode main.cpp ${SRC})
+add_madoop_executable(mdfs.bridgenode main.cpp ${SRC})
 

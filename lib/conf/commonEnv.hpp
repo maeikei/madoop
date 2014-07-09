@@ -37,11 +37,11 @@ namespace MadoopInternal
 		*/
 		void readJson(const string &path,pt::ptree &pt);
 
-		/** @brief set up world nodes
+		/** @brief set up world grid
 		*   @param None.
 		*   @return true success,false fail.
 		*/
-		virtual bool setupWorldNodes(void);
+		virtual bool setupWorldGrid(void);
 
 	private:
 		/** @brief constructor
@@ -52,7 +52,7 @@ namespace MadoopInternal
 	protected:
 		const string _argv0;
 		fs::path _confRoot;
-		vector<string> _worldnodes;
+		vector<string> _worldhosts;
 	};
 }
 #endif // __COMMON_ENV_HPP__

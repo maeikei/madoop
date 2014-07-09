@@ -15,6 +15,19 @@ namespace MadoopInternal
 	    *   @return object
 	    */
 	    static WorldGrid &getInstance(void);
+
+		/** @brief add host to world grid.
+	    *   @param host hostname or ip address of a entry server.
+	    *   @return object
+	    */
+	    void addHost(const string &host);
+
+		/** @brief build world grid.
+	    *   @param None.
+	    *   @return true success,false failure.
+	    */
+	    bool build(void);
+		
 	private:
 		/** @brief constructor
 		*   @param None.

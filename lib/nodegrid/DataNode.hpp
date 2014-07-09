@@ -1,5 +1,5 @@
-#ifndef __NEURO_NODE_HPP__
-#define __NEURO_NODE_HPP__
+#ifndef __DATA_NODE_HPP__
+#define __DATA_NODE_HPP__
 #include <string>
 #include <map>
 using namespace std;
@@ -7,28 +7,25 @@ using namespace std;
 
 namespace MadoopInternal
 {
-	class NeuroNode
+	class DataNode
 	{
 	public:
 		/** @brief constructor
 		*   @param uuid id.
 		*   @return None.
 		*/
-		NeuroNode(const string &uuid);
+		DataNode(const string &uuid);
 	private:
 		/** @brief constructor
 		*   @param None.
 		*   @return None.
 		*/
-		NeuroNode();
+		DataNode();
 	
 		
 	public:
 	private:
-		const string _uuid;
-		const string _host;
-		const string _port;
 	};
 }
-#endif // __NEURO_NODE_HPP__
+#endif // __DATA_NODE_HPP__
 

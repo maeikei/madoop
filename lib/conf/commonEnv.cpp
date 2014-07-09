@@ -1,4 +1,5 @@
 #include "commonEnv.hpp"
+#include "WorldGrid.hpp"
 using namespace MadoopInternal;
 
 #include <iostream>
@@ -16,14 +17,14 @@ namespace logging = boost::log;
 CommonEnv::CommonEnv(const string &argv0)
 :_argv0(argv0)
 ,_confRoot()
-,_worldnodes()
+,_worldhosts()
 {
 	logging::add_common_attributes();
 #ifdef _DEBUG
 // do nothing
 #else
 	logging::core::get()->set_filter(
-     	logging::trivial::severity >= logging::trivial::info
+     	logging::trivial::severity >= logging::trivial::trace
      );
 #endif
 
@@ -76,12 +77,18 @@ bool CommonEnv::setup(void)
 	return true;
 }
 
-/** @brief set up world nodes
+/** @brief set up world grid
 *   @param None.
 *   @return true success,false fail.
 */
-bool CommonEnv::setupWorldNodes(void)
+bool CommonEnv::setupWorldGrid(void)
 {
+	WorldGrid &world = WorldGrid::getInstance();
+	for (const auto &node : _worldhosts)
+	{
+		world.addHost(node);
+		BOOST_LOG_TRIVIAL(info) << "Contract to this servers for global information " << node << endl;
+	}
 	return true;
 }
 

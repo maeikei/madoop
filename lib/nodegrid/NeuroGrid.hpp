@@ -7,31 +7,37 @@ using namespace std;
 
 namespace MadoopInternal
 {
+	class NeuroNode;
 	class NeuroGrid;
 	class NeuroGrid
 	{
 	public:
-		/** @brief constructor
-		*   @param uuid id.
-		*   @return None.
-		*/
-		NeuroGrid(const string &uuid);
-	private:
+	    /** @brief get union object of grid.
+	    *   @param None
+	    *   @return object
+	    */
+	    static NeuroGrid &getInstance(void);
+
+		/** @brief build neuro grid.
+	    *   @param None.
+	    *   @return true success,false failure.
+	    */
+	    bool build(void);
+	protected:
 		/** @brief constructor
 		*   @param None.
 		*   @return None.
 		*/
 		NeuroGrid();
-	
 		
 	public:
 		const int iConstNearNodeMax = 256;
-		const int iConstMiddleNodeMax = 128;
 		const int iConstFarNodeMax = 64;
 	private:
-		map<string,NeuroGrid*> _near;
-		map<string,NeuroGrid*> _midlle;
-		map<string,NeuroGrid*> _far;
+		const string _uAdd;
+		const NeuroNode *_self;
+		map<string,NeuroNode*> _near;
+		map<string,NeuroNode*> _far;
 	};
 }
 #endif // __NEURO_GRID_HPP__

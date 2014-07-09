@@ -30,3 +30,22 @@ WorldGrid &WorldGrid::getInstance(void)
 	return instance;
 }
 
+/** @brief add host to world grid.
+*   @param host hostname or ip address of a entry server.
+*   @return object
+*/
+void WorldGrid::addHost(const string &host)
+{
+	
+}
+
+/** @brief build world grid.
+*   @param None.
+*   @return true success,false failure.
+*/
+bool WorldGrid::build(void)
+{
+	return true;
+}
+
+

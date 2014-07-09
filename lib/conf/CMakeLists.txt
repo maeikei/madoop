@@ -2,5 +2,5 @@ file(GLOB SRC
     "*.hpp"
     "*.cpp"
 )
-ADD_LIBRARY(madoop.conf ${SRC})
+add_madoop_library(madoop.conf ${SRC})
 
