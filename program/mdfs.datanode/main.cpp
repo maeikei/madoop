@@ -25,12 +25,12 @@ int main(int ac,char*av[])
 		return 0;
 	}
 	MadoopInternal::WorldGrid &world = MadoopInternal::WorldGrid::getInstance();
-	if(false == world.build())
+	if(false == world.build(env))
 	{
 		return -1;
 	}
 	MadoopInternal::DataGrid &data = MadoopInternal::DataGrid::getInstance();
-	if(false == data.build())
+	if(false == data.build(env))
 	{
 		return -1;
 	}

@@ -1,6 +1,9 @@
 #include "NeuroGrid.hpp"
+#include "NeuroNode.hpp"
+#include "CommonEnv.hpp"
 using namespace MadoopInternal;
 
+#include "MadoopDebug.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -9,7 +12,6 @@ using namespace MadoopInternal;
 #include <string>
 #include <functional>
 
-#include <boost/log/trivial.hpp>
 
 
 #include <boost/uuid/uuid.hpp>            // uuid class
@@ -51,7 +53,6 @@ static const string genUAddress(void)
 
 
 
-#define TRACE_VAR(x) BOOST_LOG_TRIVIAL(trace) << __func__  << ": " << #x << " = <" << x << ">" << endl;
 
 /** @brief constructor
 *   @param None.
@@ -59,7 +60,7 @@ static const string genUAddress(void)
 */
 NeuroGrid::NeuroGrid()
 :_uAdd(genUAddress())
-,_self(nullptr)
+,_self(new NeuroNode(_uAdd))
 ,_near{}
 ,_far{}
 {
@@ -77,11 +78,11 @@ NeuroGrid &NeuroGrid::getInstance(void)
 	return instance;
 }
 
-/** @brief build neuro grid.
-*   @param None.
+/** @brief build world grid.
+*   @param env .
 *   @return true success,false failure.
 */
-bool NeuroGrid::build(void)
+bool NeuroGrid::build(const CommonEnv &env)
 {
 	return true;
 }

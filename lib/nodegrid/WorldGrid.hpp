@@ -7,6 +7,8 @@ using namespace std;
 
 namespace MadoopInternal
 {
+	class CommonEnv;
+	
 	class WorldGrid
 	{
 	public:
@@ -23,10 +25,10 @@ namespace MadoopInternal
 	    void addHost(const string &host);
 
 		/** @brief build world grid.
-	    *   @param None.
+	    *   @param env .
 	    *   @return true success,false failure.
 	    */
-	    bool build(void);
+	    bool build(const CommonEnv &env);
 		
 	private:
 		/** @brief constructor

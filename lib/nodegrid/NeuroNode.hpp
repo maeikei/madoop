@@ -10,11 +10,16 @@ namespace MadoopInternal
 	class NeuroNode
 	{
 	public:
-		/** @brief constructor
-		*   @param uuid id.
+		/** @brief constructor of self host
+		*   @param uniqued address.
 		*   @return None.
 		*/
-		NeuroNode(const string &uuid);
+		NeuroNode(const string &uAdd);
+		/** @brief constructor of remote host
+		*   @param uniqued address.
+		*   @return None.
+		*/
+		NeuroNode(const string &uAdd,const string &jconf);
 	private:
 		/** @brief constructor
 		*   @param None.
@@ -25,7 +30,7 @@ namespace MadoopInternal
 		
 	public:
 	private:
-		const string _uuid;
+		const string _uAdd;
 		const string _host;
 		const string _port;
 	};

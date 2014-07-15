@@ -90,7 +90,7 @@ namespace po = boost::program_options;
 
 
 #include "program_options.hpp"
-#include "clientEnv.hpp"
+#include "ClientEnv.hpp"
 
 int main(int ac,char*av[])
 {

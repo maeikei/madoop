@@ -2,13 +2,17 @@
 #define __NEURO_GRID_HPP__
 #include <string>
 #include <map>
+#include <memory>
 using namespace std;
 
 
 namespace MadoopInternal
 {
+	class CommonEnv;
 	class NeuroNode;
 	class NeuroGrid;
+	
+	typedef shared_ptr<NeuroNode> NeuroNodePtr;
 	class NeuroGrid
 	{
 	public:
@@ -18,11 +22,11 @@ namespace MadoopInternal
 	    */
 	    static NeuroGrid &getInstance(void);
 
-		/** @brief build neuro grid.
-	    *   @param None.
+		/** @brief build world grid.
+	    *   @param env .
 	    *   @return true success,false failure.
 	    */
-	    bool build(void);
+	    bool build(const CommonEnv &env);
 	protected:
 		/** @brief constructor
 		*   @param None.
@@ -35,9 +39,9 @@ namespace MadoopInternal
 		const int iConstFarNodeMax = 64;
 	private:
 		const string _uAdd;
-		const NeuroNode *_self;
-		map<string,NeuroNode*> _near;
-		map<string,NeuroNode*> _far;
+		const NeuroNodePtr _self;
+		map<string,NeuroNodePtr> _near;
+		map<string,NeuroNodePtr> _far;
 	};
 }
 #endif // __NEURO_GRID_HPP__

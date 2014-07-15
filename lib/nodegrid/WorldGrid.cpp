@@ -1,4 +1,5 @@
 #include "WorldGrid.hpp"
+#include "CommonEnv.hpp"
 using namespace MadoopInternal;
 
 
@@ -40,10 +41,10 @@ void WorldGrid::addHost(const string &host)
 }
 
 /** @brief build world grid.
-*   @param None.
+*   @param env .
 *   @return true success,false failure.
 */
-bool WorldGrid::build(void)
+bool WorldGrid::build(const CommonEnv &env)
 {
 	return true;
 }

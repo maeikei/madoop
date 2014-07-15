@@ -11,10 +11,10 @@ namespace MadoopInternal
 	{
 	public:
 		/** @brief constructor
-		*   @param uuid id.
+		*   @param uniqued address.
 		*   @return None.
 		*/
-		DataNode(const string &uuid);
+		DataNode(const string &uAdd);
 	private:
 		/** @brief constructor
 		*   @param None.

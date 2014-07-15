@@ -1,13 +1,15 @@
 {
+	"port":"18920",
+	
 	"data":
 	{
 		"path": "/mnt/hdd/mdfs/data",
-		"limit": "none",
+		"limit": "none"
 	},
 	"meta":
 	{
 		"path": "/mnt/hdd/mdfs/meta",
-		"limit": "none",
+		"limit": "none"
 	}
 }
 
