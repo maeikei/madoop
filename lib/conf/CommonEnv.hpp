@@ -43,6 +43,12 @@ namespace MadoopInternal
 		*/
 		virtual bool setupWorldGrid(void);
 
+		/** @brief read configures
+		*   @param None.
+		*   @return true success,false fail.
+		*/
+		bool readConf(void);
+		
 	private:
 		/** @brief constructor
 		 *
@@ -53,6 +59,7 @@ namespace MadoopInternal
 		const string _argv0;
 		fs::path _confRoot;
 		vector<string> _worldhosts;
+		int _port;
 	};
 }
 #endif // __COMMON_ENV_HPP__

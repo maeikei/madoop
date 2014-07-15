@@ -31,24 +31,16 @@ bool DataNodeEnv::setup(void)
 		return false;
 	}
 	_confRoot += "/datanode";
-	
-	
-	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
-	try
+	if( false == CommonEnv::readConf())
 	{
-		pt::ptree pt;
-		readJson("world.conf.json",pt);
-		
-		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("ipv6.entries"))
-		{
-			BOOST_LOG_TRIVIAL(trace) << __LINE__ << v.second.data() << endl;
-			_worldhosts.push_back(v.second.data());
-	    }
+		return false;
 	}
-	catch(std::exception const& e)
+	
+	if( false == this->readConf())
 	{
-		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
+		return false;
 	}
+	
 	if( false == CommonEnv::setupWorldGrid())
 	{
 		return false;

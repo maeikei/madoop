@@ -2,6 +2,8 @@
 #include "WorldGrid.hpp"
 using namespace MadoopInternal;
 
+#include "MadoopDebug.hpp"
+
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
@@ -10,6 +12,9 @@ using namespace MadoopInternal;
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup.hpp>
 namespace logging = boost::log;
+
+#include <boost/foreach.hpp>
+#include <boost/optional.hpp>
 
 /** @brief constructor
 *   @param argv0 arvv[0].
@@ -69,10 +74,10 @@ bool CommonEnv::setup(void)
 	{
 		/// to be test in many system.
 	}
-	BOOST_LOG_TRIVIAL(trace) << program << endl;
+	TRACE_VAR(program);
 	_confRoot = program.parent_path().parent_path();
 	_confRoot += "/conf";
-	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
+	TRACE_VAR(_confRoot);
 
 	return true;
 }
@@ -99,9 +104,48 @@ bool CommonEnv::setupWorldGrid(void)
 */
 void CommonEnv::readJson(const string &path,pt::ptree &pt)
 {
-	_confRoot += "/" + path;
-	BOOST_LOG_TRIVIAL(trace) << _confRoot << endl;
-	pt::read_json(_confRoot.string(), pt);
+	auto fsPath =  _confRoot;
+	fsPath += "/" + path;
+	TRACE_VAR(fsPath);
+	pt::read_json(fsPath.string(), pt);
 }
 
+/** @brief read configures
+*   @param None.
+*   @return true success,false fail.
+*/
+bool CommonEnv::readConf(void)
+{
+	TRACE_VAR(_confRoot);
+	try
+	{
+		pt::ptree pt;
+		readJson("world.conf.json",pt);
+		
+		BOOST_FOREACH (const pt::ptree::value_type& v, pt.get_child("ipv6.entries"))
+		{
+			TRACE_VAR(v.second.data());
+			_worldhosts.push_back(v.second.data());
+	    }
+	}
+	catch(std::exception const& e)
+	{
+		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
+		return false;
+	}
+	try
+	{
+		pt::ptree pt;
+		readJson("neuro.conf.json",pt);
+		
+		_port = pt.get<int>("port");
+		TRACE_VAR(_port);
+	}
+	catch(std::exception const& e)
+	{
+		FATAL_VAR(e.what());
+		return false;
+	}
+	return true;
+}
 
