@@ -1,6 +1,7 @@
 [global]
     auth supported = cephx
     keyring = /etc/ceph/keyring.admin
+    ms bind ipv6 = true
 
 [mds]
     keyring = /etc/ceph/keyring.$name
@@ -20,7 +21,6 @@
     osd data = /mnt/hdd/cephfs/osd/$name
     osd journal = /mnt/hdd/cephfs/osd/$name/journal
     osd journal size = 512
-    osd class dir = /usr/lib64/rados-classes
     keyring = /etc/ceph/keyring.$name
 
 [osd.0]
