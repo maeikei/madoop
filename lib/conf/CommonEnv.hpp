@@ -30,6 +30,13 @@ namespace MadoopInternal
 		*/
 		virtual bool setup(void);
 
+
+		/** @brief parse actions
+		*   @param None.
+		*   @return true success,false fail.
+		*/
+		int port(void) const {return _port;}
+		
 	protected:
 		/** @brief read json confiure.
 		*   @param None.

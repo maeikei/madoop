@@ -84,6 +84,7 @@ NeuroGrid &NeuroGrid::getInstance(void)
 */
 bool NeuroGrid::build(const CommonEnv &env)
 {
+	_self->build(env.port());
 	return true;
 }
 
