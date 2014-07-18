@@ -1,4 +1,5 @@
 #include "DataGrid.hpp"
+#include "DataNode.hpp"
 #include "NeuroGrid.hpp"
 using namespace MadoopInternal;
 

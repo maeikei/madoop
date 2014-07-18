@@ -15,7 +15,8 @@ using namespace MadoopInternal;
 *   @param uuid id.
 *   @return None.
 */
-DataNode::DataNode(const string &uuid)
+DataNode::DataNode()
+:NeuroNode()
 {
 }
 

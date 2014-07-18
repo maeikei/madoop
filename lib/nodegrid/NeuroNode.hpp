@@ -10,11 +10,11 @@ namespace MadoopInternal
 	class NeuroNode
 	{
 	public:
-		/** @brief constructor of self host
-		*   @param uniqued address.
+		/** @brief constructor local host self.
+		*   @param None.
 		*   @return None.
 		*/
-		NeuroNode(const string &uAdd);
+		NeuroNode();
 
 		/** @brief constructor of remote host
 		*   @param uniqued address.
@@ -28,11 +28,6 @@ namespace MadoopInternal
 		*/
 		void build(int port);
 	private:
-		/** @brief constructor
-		*   @param None.
-		*   @return None.
-		*/
-		NeuroNode();
 	
 		
 	public:

@@ -3,26 +3,22 @@
 #include <string>
 #include <map>
 using namespace std;
+#include "NeuroNode.hpp"
 
 
 namespace MadoopInternal
 {
-	class DataNode
+	class DataNode : public NeuroNode
 	{
 	public:
-		/** @brief constructor
-		*   @param uniqued address.
-		*   @return None.
-		*/
-		DataNode(const string &uAdd);
-	private:
 		/** @brief constructor
 		*   @param None.
 		*   @return None.
 		*/
 		DataNode();
-	
 		
+	private:
+	
 	public:
 	private:
 	};
