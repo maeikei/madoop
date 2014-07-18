@@ -18,26 +18,16 @@ using namespace MadoopInternal;
 
 
 
+
 /** @brief constructor
 *   @param None.
 *   @return None.
 */
-NeuroGrid::NeuroGrid()
-:_self(new NeuroNode())
+NeuroGrid::NeuroGrid(NeuroNodePtr self)
+:_self(self)
 ,_near{}
 ,_far{}
 {
-}
-
-
-/** @brief get union object of grid.
-*   @param None
-*   @return object
-*/
-NeuroGrid &NeuroGrid::getInstance(void)
-{
-	static NeuroGrid instance;
-	return instance;
 }
 
 /** @brief build world grid.
@@ -49,4 +39,5 @@ bool NeuroGrid::build(const CommonEnv &env)
 	_self->build(env.port());
 	return true;
 }
+
 

@@ -3,7 +3,8 @@
 
 
 #include "WorldGrid.hpp"
-#include "DataGrid.hpp"
+#include "NeuroGrid.hpp"
+#include "DataNode.hpp"
 
 /*
 
@@ -29,8 +30,9 @@ int main(int ac,char*av[])
 	{
 		return -1;
 	}
-	MadoopInternal::DataGrid &data = MadoopInternal::DataGrid::getInstance();
-	if(false == data.build(env))
+	shared_ptr<MadoopInternal::DataNode> self(new MadoopInternal::DataNode);
+	MadoopInternal::NeuroGrid neuro(self);
+	if(false == neuro.build(env))
 	{
 		return -1;
 	}

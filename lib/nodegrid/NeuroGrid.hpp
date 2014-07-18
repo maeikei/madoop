@@ -10,17 +10,17 @@ namespace MadoopInternal
 {
 	class CommonEnv;
 	class NeuroNode;
-	class NeuroGrid;
 	
 	typedef shared_ptr<NeuroNode> NeuroNodePtr;
+	
 	class NeuroGrid
 	{
 	public:
 		/** @brief constructor
-		*   @param ptr.
+		*   @param self.
 		*   @return None.
 		*/
-		NeuroGrid(NeuroNode* ptr);
+		NeuroGrid(NeuroNodePtr self);
 		
 		/** @brief build world grid.
 	    *   @param env .

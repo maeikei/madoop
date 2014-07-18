@@ -1,5 +1,4 @@
 #include "DataNodeEnv.hpp"
-#include "DataGrid.hpp"
 using namespace MadoopInternal;
 
 
@@ -45,7 +44,6 @@ bool DataNodeEnv::setup(void)
 	{
 		return false;
 	}
-	DataGrid &grid = DataGrid::getInstance();
 	return true;
 }
 

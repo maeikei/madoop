@@ -21,6 +21,9 @@ test-mdfs.client:build
 test-mdfs.datanode:build
 	$(INSTALL_DIR)/bin/mdfs.datanode
 
+test-mdp.loader:build
+	$(INSTALL_DIR)/bin/mdp.loader
+
 scan-build:
 	mkdir -p $(ANALYZER_DIR)
 	cd $(ANALYZER_DIR) && cmake $(SRC_DIR) && scan-build -k -o $(ANALYZER_DIR) make -j4
