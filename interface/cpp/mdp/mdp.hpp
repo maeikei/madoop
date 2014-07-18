@@ -125,7 +125,7 @@ namespace Madoop
 		*   @return word set.
 		*/
 		template < typename Func > TextWord words( Func func )
-		{ 
+		{
 			TextWord _word;
 			TextWordFilter input;
 			if(true == func(input))
