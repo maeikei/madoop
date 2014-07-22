@@ -111,9 +111,6 @@ NeuroNode::NeuroNode(void)
 ,_host(readIPv6())
 ,_port()
 {
-	TRACE_VAR(_uAdd);
-	TRACE_VAR(_host);
-	TRACE_VAR(_port);
 }
 
 /** @brief constructor of remote host
@@ -137,5 +134,8 @@ NeuroNode::NeuroNode(const string &uAdd,const string &jconf)
 void NeuroNode::build(int port)
 {
 	_port = port;
+	TRACE_VAR(_uAdd);
+	TRACE_VAR(_host);
+	TRACE_VAR(_port);
 }
 
