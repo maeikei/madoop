@@ -62,6 +62,11 @@
 class DATABASE_CONFIG {
 
 	public $default = array(
+        'datasource' => 'Database/Sqlite',
+        'persistent' => true,
+        'database' => 'madoop.sqlite',
+        'prefix' => '',
+        //'encoding' => 'utf8',
 	);
 
 	public $test = array(

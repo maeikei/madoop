@@ -23,4 +23,4 @@ apache2:config
 
 nginx:config
 	sudo service nginx reload
-	
+	sudo service nginx restart

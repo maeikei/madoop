@@ -10,8 +10,7 @@
 	"ipv6" :{
 		"entries":
 		[
-			"https://madoop.watorvapor.com",
-			"https://www.watorvapor.com/madoop"
+			"http://[2408:212:3020:0:275:eff:fe06:fb12]/madoop/MadoopWebDeploy/entry.json",
 		]
 	}
 
