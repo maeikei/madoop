@@ -4,16 +4,11 @@
 using namespace std;
 using namespace Madoop;
 
+
+extern int task_entry(void);
+
 int main(int ac,char*av[])
 {
-	auto _textFile = mc.textFile("mdfs://[......]/");
-
-	auto filterLine = []( TextLineFilter &_l) -> bool { return _l.empty(); };
-	auto _lines = _textFile.lines(filterLine);
-
-	auto filterWord = []( TextWordFilter &_w) -> bool { return _w.empty(); };
-	auto _words = _textFile.words(filterWord);
-	
-	
-	return 0;
+	return task_entry();
 }
+
