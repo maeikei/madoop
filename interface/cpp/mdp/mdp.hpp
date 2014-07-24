@@ -50,7 +50,26 @@ namespace Madoop
 	private:
 	};
 	
-	class TextLine
+
+	class MdpObject 
+	{
+	public:
+		/** @brief write 
+		*   @param uri resource path.
+		*   @return None.
+		*/
+		void write(const string &uri);
+	protected:
+		/** @brief constructor
+		*   @param None.
+		*   @return None.
+		*/
+		MdpObject();
+	private:
+		
+	};
+	
+	class TextLine :public MdpObject
 	{
 	public:
 		/** @brief constructor
@@ -73,7 +92,7 @@ namespace Madoop
 		bool empty() { return false; }
 	};
 	
-	class TextWord
+	class TextWord :public MdpObject
 	{
 	public:
 		/** @brief constructor
@@ -96,7 +115,7 @@ namespace Madoop
 		bool empty() { return false; }
 	};
 	
-	class TextFile
+	class TextFile :public MdpObject
 	{
 	public:
 		/** @brief constructor
