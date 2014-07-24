@@ -35,7 +35,7 @@ class MadoopWebDeployController extends RestFullController {
 	}
 	
 	public function entry() {
-		$hosts = `cat /etc/hosts`;
+		$hosts = `cat entry.json`;
 		return $this->success(array('hosts' => explode("\n",$hosts)));
 	}
 	
