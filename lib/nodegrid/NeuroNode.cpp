@@ -64,20 +64,20 @@ static const string genUAddress(void)
 	}
 	*/
 	SystemCommand cmd("openssl genrsa  4096 | openssl rsa -pubout | sha512sum");
-	string privateKey = cmd.result();
+	string shaPublicKey = cmd.result();
 	{
 		boost::regex  reg( " " );
-		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+		shaPublicKey = boost::regex_replace(shaPublicKey,reg,"", boost::format_all);
 	}
 	{
 		boost::regex  reg( "\n" );
-		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+		shaPublicKey = boost::regex_replace(shaPublicKey,reg,"", boost::format_all);
 	}
 	{
 		boost::regex  reg( "-" );
-		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+		shaPublicKey = boost::regex_replace(shaPublicKey,reg,"", boost::format_all);
 	}
-	return privateKey;
+	return shaPublicKey;
 }
 
 
@@ -90,22 +90,9 @@ static string readIPv6(void)
 {
 	string address = "";
 	
-//	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Global");
-	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Link");
+	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Global");
+//	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Link");
 	address = cmd.result();
-#if 0
-	FILE* pipe = popen("ifconfig | grep inet6 | grep Scope:Global", "r");
-	if (NULL == pipe) 
-	{
-		return "ERROR";
-	}
-	char buffer[256];
-	if(NULL != fgets(buffer, sizeof(buffer), pipe))
-	{
-		address = buffer;
-	}
-	pclose(pipe);
-#endif
 	{
 		boost::regex  reg( "/64 Scope:Global" );
 		address = boost::regex_replace(address,reg,"", boost::format_all);
