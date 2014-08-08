@@ -130,7 +130,7 @@ bool CommonEnv::readConf(void)
 	}
 	catch(std::exception const& e)
 	{
-		BOOST_LOG_TRIVIAL(fatal) << e.what() << endl;
+		FATAL_VAR( e.what());
 		return false;
 	}
 	try

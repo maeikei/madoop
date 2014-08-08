@@ -1,6 +1,7 @@
 #include "SystemCommand.hpp"
 using namespace MadoopInternal;
 
+#include "MadoopDebug.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -17,6 +18,7 @@ using namespace MadoopInternal;
 SystemCommand::SystemCommand(const string &cmd)
 :_cmd(cmd)
 {
+	TRACE_VAR(_cmd);
 }
 
 
@@ -26,18 +28,19 @@ SystemCommand::SystemCommand(const string &cmd)
 */
 string SystemCommand::result(void)
 {
-	string ret = "ERROR";
-	FILE* pipe = popen("ifconfig | grep inet6 | grep Scope:Global", "r");
+	string ret = "";
+	FILE* pipe = popen(_cmd.c_str(), "r");
 	if (nullptr == pipe) 
 	{
 		return ret;
 	}
 	char buffer[256];
-	if(nullptr != fgets(buffer, sizeof(buffer), pipe))
+	while(nullptr != fgets(buffer, sizeof(buffer), pipe))
 	{
-		ret = buffer;
+		ret += buffer;
 	}
 	pclose(pipe);
+	TRACE_VAR(ret);
 	return ret;
 }
 

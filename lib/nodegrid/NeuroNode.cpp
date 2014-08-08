@@ -1,4 +1,5 @@
 #include "NeuroNode.hpp"
+#include "SystemCommand.hpp"
 using namespace MadoopInternal;
 
 #include "MadoopDebug.hpp"
@@ -52,6 +53,7 @@ static hashData_t getShaHash( const void *data, const std::size_t byte_count )
 */
 static const string genUAddress(void)
 {
+	/*
 	string uuidStr = boost::uuids::to_string(boost::uuids::random_generator()());
 	hashData_t hash = getShaHash(uuidStr.c_str(),uuidStr.size());
 	string ret("");
@@ -60,7 +62,22 @@ static const string genUAddress(void)
 		std::sprintf(buf, "%02x", x);
 		ret += buf;
 	}
-	return ret;
+	*/
+	SystemCommand cmd("openssl genrsa  4096 | openssl rsa -pubout | sha512sum");
+	string privateKey = cmd.result();
+	{
+		boost::regex  reg( " " );
+		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+	}
+	{
+		boost::regex  reg( "\n" );
+		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+	}
+	{
+		boost::regex  reg( "-" );
+		privateKey = boost::regex_replace(privateKey,reg,"", boost::format_all);
+	}
+	return privateKey;
 }
 
 
@@ -72,6 +89,11 @@ static const string genUAddress(void)
 static string readIPv6(void)
 {
 	string address = "";
+	
+//	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Global");
+	SystemCommand cmd("ifconfig | grep inet6 | grep Scope:Link");
+	address = cmd.result();
+#if 0
 	FILE* pipe = popen("ifconfig | grep inet6 | grep Scope:Global", "r");
 	if (NULL == pipe) 
 	{
@@ -82,6 +104,8 @@ static string readIPv6(void)
 	{
 		address = buffer;
 	}
+	pclose(pipe);
+#endif
 	{
 		boost::regex  reg( "/64 Scope:Global" );
 		address = boost::regex_replace(address,reg,"", boost::format_all);
@@ -98,7 +122,6 @@ static string readIPv6(void)
 		boost::regex  reg( "\n" );
 		address = boost::regex_replace(address,reg,"", boost::format_all);
 	}
-	pclose(pipe);
 	return address;
 }
 
