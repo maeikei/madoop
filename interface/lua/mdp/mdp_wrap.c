@@ -1852,7 +1852,7 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 
 #define SWIG_LUACODE   luaopen_mdfs_luacode
 
-#include "mdfs/mdfs.hpp"
+#include "mdp/mdp.hpp"
 using namespace Madoop
 
 #ifdef __cplusplus

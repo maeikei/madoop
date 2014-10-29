@@ -13,3 +13,7 @@ $(LANGS_TARGETS):
 	mkdir -p ./$@/mdfs
 	swig -I./cpp/  -outdir ./$@/mdfs/ -$@ ./swig/mdfs/mdfs.i
 	mv ./swig/mdfs/*_wrap.c ./$@/mdfs/
+
+	mkdir -p ./$@/mdp
+	swig -I./cpp/  -outdir ./$@/mdp/ -$@ ./swig/mdp/mdp.i
+	mv ./swig/mdp/*_wrap.c ./$@/mdp/
