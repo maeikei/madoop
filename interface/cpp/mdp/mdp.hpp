@@ -25,25 +25,25 @@ namespace Madoop
 		*   @param uri resource path.
 		*   @return container.
 		*/
-		TextFile textFile(const string &uri);
+		TextFile textFile(const std::string &uri);
 		
 		/** @brief create a image file container
 		*   @param uri resource path.
 		*   @return container.
 		*/
-		ImageFile imageFile(const string &uri);
+		ImageFile imageFile(const std::string &uri);
 
 		/** @brief create a video file container
 		*   @param uri resource path.
 		*   @return container.
 		*/
-		VideoFile videoFile(const string &uri);
+		VideoFile videoFile(const std::string &uri);
 		
 		/** @brief create a audio file container
 		*   @param uri resource path.
 		*   @return container.
 		*/
-		AudioFile audioFile(const string &uri);
+		AudioFile audioFile(const std::string &uri);
 
 	private:
 	public:
@@ -58,7 +58,7 @@ namespace Madoop
 		*   @param uri resource path.
 		*   @return None.
 		*/
-		void write(const string &uri);
+		void write(const std::string &uri);
 	protected:
 		/** @brief constructor
 		*   @param None.
@@ -122,7 +122,7 @@ namespace Madoop
 		*   @param None.
 		*   @return None.
 		*/
-		TextFile(const string &uri);
+		TextFile(const std::string &uri);
 		
 		/** @brief filter with line
 		*   @param func filter lamda.
