@@ -12,6 +12,30 @@
 
 #define SWIG_PREFIX ""
 #define SWIG_PREFIX_LEN 0
+
+#ifdef __cplusplus
+/* SwigValueWrapper is described in swig.swg */
+template<typename T> class SwigValueWrapper {
+  struct SwigMovePointer {
+    T *ptr;
+    SwigMovePointer(T *p) : ptr(p) { }
+    ~SwigMovePointer() { delete ptr; }
+    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
+  } pointer;
+  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
+  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
+public:
+  SwigValueWrapper() : pointer(0) { }
+  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
+  operator T&() const { return *pointer.ptr; }
+  T *operator&() { return pointer.ptr; }
+};
+
+template <typename T> T SwigValueInit() {
+  return T();
+}
+#endif
+
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -973,26 +997,36 @@ static void SWIG_Php_SetModule(swig_module_info *pointer) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_namespace swig_types[0]
-static swig_type_info *swig_types[2];
-static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
+#define SWIGTYPE_p_Madoop__AudioFile swig_types[0]
+#define SWIGTYPE_p_Madoop__ImageFile swig_types[1]
+#define SWIGTYPE_p_Madoop__MadoopJobContext swig_types[2]
+#define SWIGTYPE_p_Madoop__MdpObject swig_types[3]
+#define SWIGTYPE_p_Madoop__TextFile swig_types[4]
+#define SWIGTYPE_p_Madoop__TextLine swig_types[5]
+#define SWIGTYPE_p_Madoop__TextLineFilter swig_types[6]
+#define SWIGTYPE_p_Madoop__TextWord swig_types[7]
+#define SWIGTYPE_p_Madoop__TextWordFilter swig_types[8]
+#define SWIGTYPE_p_Madoop__VideoFile swig_types[9]
+#define SWIGTYPE_p_std__string swig_types[10]
+static swig_type_info *swig_types[12];
+static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
 /* header section */
-ZEND_BEGIN_MODULE_GLOBALS(mdfs)
+ZEND_BEGIN_MODULE_GLOBALS(mdp)
 const char *error_msg;
 int error_code;
-ZEND_END_MODULE_GLOBALS(mdfs)
-ZEND_DECLARE_MODULE_GLOBALS(mdfs)
+ZEND_END_MODULE_GLOBALS(mdp)
+ZEND_DECLARE_MODULE_GLOBALS(mdp)
 #ifdef ZTS
-#define SWIG_ErrorMsg() TSRMG(mdfs_globals_id, zend_mdfs_globals *, error_msg )
-#define SWIG_ErrorCode() TSRMG(mdfs_globals_id, zend_mdfs_globals *, error_code )
+#define SWIG_ErrorMsg() TSRMG(mdp_globals_id, zend_mdp_globals *, error_msg )
+#define SWIG_ErrorCode() TSRMG(mdp_globals_id, zend_mdp_globals *, error_code )
 #else
-#define SWIG_ErrorMsg() (mdfs_globals.error_msg)
-#define SWIG_ErrorCode() (mdfs_globals.error_code)
+#define SWIG_ErrorMsg() (mdp_globals.error_msg)
+#define SWIG_ErrorCode() (mdp_globals.error_code)
 #endif
 
 #ifdef __GNUC__
@@ -1005,11 +1039,11 @@ static void SWIG_FAIL() {
     abort();
 }
 
-static void mdfs_init_globals(zend_mdfs_globals *globals ) {
+static void mdp_init_globals(zend_mdp_globals *globals ) {
   globals->error_msg = default_error_msg;
   globals->error_code = default_error_code;
 }
-static void mdfs_destroy_globals(zend_mdfs_globals * globals) { (void)globals; }
+static void mdp_destroy_globals(zend_mdp_globals * globals) { (void)globals; }
 
 static void SWIG_ResetError() {
   TSRMLS_FETCH();
@@ -1017,7 +1051,7 @@ static void SWIG_ResetError() {
   SWIG_ErrorCode() = default_error_code;
 }
 
-ZEND_NAMED_FUNCTION(_wrap_swig_mdfs_alter_newobject) {
+ZEND_NAMED_FUNCTION(_wrap_swig_mdp_alter_newobject) {
   zval **args[2];
   swig_object_wrapper *value;
   int type;
@@ -1033,7 +1067,7 @@ ZEND_NAMED_FUNCTION(_wrap_swig_mdfs_alter_newobject) {
 
   return;
 }
-ZEND_NAMED_FUNCTION(_wrap_swig_mdfs_get_newobject) {
+ZEND_NAMED_FUNCTION(_wrap_swig_mdp_get_newobject) {
   zval **args[1];
   swig_object_wrapper *value;
   int type;
@@ -1048,35 +1082,84 @@ ZEND_NAMED_FUNCTION(_wrap_swig_mdfs_get_newobject) {
 
   return;
 }
-#define SWIG_name  "mdfs"
+#define SWIG_name  "mdp"
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include "php.h"
 #include "php_ini.h"
 #include "ext/standard/info.h"
-#include "php_mdfs.h"
+#include "php_mdp.h"
 #ifdef __cplusplus
 }
 #endif
 
 
-#include "mdfs/mdfs.hpp"
+#include "mdp/mdp.hpp"
 using namespace Madoop
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_namespace = {"_p_namespace", "namespace *", 0, 0, (void*)0, 0};
+static void *_p_Madoop__TextLineTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextLine *) x));
+}
+static void *_p_Madoop__TextFileTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextFile *) x));
+}
+static void *_p_Madoop__TextWordTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextWord *) x));
+}
+static swig_type_info _swigt__p_Madoop__AudioFile = {"_p_Madoop__AudioFile", "Madoop::AudioFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__ImageFile = {"_p_Madoop__ImageFile", "Madoop::ImageFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__MadoopJobContext = {"_p_Madoop__MadoopJobContext", "Madoop::MadoopJobContext *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__MdpObject = {"_p_Madoop__MdpObject", "Madoop::MdpObject *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextFile = {"_p_Madoop__TextFile", "Madoop::TextFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextLine = {"_p_Madoop__TextLine", "Madoop::TextLine *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextLineFilter = {"_p_Madoop__TextLineFilter", "Madoop::TextLineFilter *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextWord = {"_p_Madoop__TextWord", "Madoop::TextWord *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextWordFilter = {"_p_Madoop__TextWordFilter", "Madoop::TextWordFilter *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__VideoFile = {"_p_Madoop__VideoFile", "Madoop::VideoFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_namespace,
+  &_swigt__p_Madoop__AudioFile,
+  &_swigt__p_Madoop__ImageFile,
+  &_swigt__p_Madoop__MadoopJobContext,
+  &_swigt__p_Madoop__MdpObject,
+  &_swigt__p_Madoop__TextFile,
+  &_swigt__p_Madoop__TextLine,
+  &_swigt__p_Madoop__TextLineFilter,
+  &_swigt__p_Madoop__TextWord,
+  &_swigt__p_Madoop__TextWordFilter,
+  &_swigt__p_Madoop__VideoFile,
+  &_swigt__p_std__string,
 };
 
-static swig_cast_info _swigc__p_namespace[] = {  {&_swigt__p_namespace, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__AudioFile[] = {  {&_swigt__p_Madoop__AudioFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__ImageFile[] = {  {&_swigt__p_Madoop__ImageFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MadoopJobContext[] = {  {&_swigt__p_Madoop__MadoopJobContext, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MdpObject[] = {  {&_swigt__p_Madoop__TextLine, _p_Madoop__TextLineTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__TextFile, _p_Madoop__TextFileTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__MdpObject, 0, 0, 0},  {&_swigt__p_Madoop__TextWord, _p_Madoop__TextWordTo_p_Madoop__MdpObject, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextFile[] = {  {&_swigt__p_Madoop__TextFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLine[] = {  {&_swigt__p_Madoop__TextLine, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLineFilter[] = {  {&_swigt__p_Madoop__TextLineFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWord[] = {  {&_swigt__p_Madoop__TextWord, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWordFilter[] = {  {&_swigt__p_Madoop__TextWordFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__VideoFile[] = {  {&_swigt__p_Madoop__VideoFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_namespace,
+  _swigc__p_Madoop__AudioFile,
+  _swigc__p_Madoop__ImageFile,
+  _swigc__p_Madoop__MadoopJobContext,
+  _swigc__p_Madoop__MdpObject,
+  _swigc__p_Madoop__TextFile,
+  _swigc__p_Madoop__TextLine,
+  _swigc__p_Madoop__TextLineFilter,
+  _swigc__p_Madoop__TextWord,
+  _swigc__p_Madoop__TextWordFilter,
+  _swigc__p_Madoop__VideoFile,
+  _swigc__p_std__string,
 };
 
 
@@ -1084,12 +1167,482 @@ static swig_cast_info *swig_cast_initial[] = {
 
 /* end header section */
 /* vdecl subsection */
-static int le_swig__p_namespace=0; /* handle for _p_namespace */
+static int le_swig__p_Madoop__VideoFile=0; /* handle for _p_Madoop__VideoFile */
+static int le_swig__p_Madoop__TextFile=0; /* handle for TextFile */
+static int le_swig__p_Madoop__AudioFile=0; /* handle for _p_Madoop__AudioFile */
+static int le_swig__p_Madoop__TextLine=0; /* handle for TextLine */
+static int le_swig__p_Madoop__TextWordFilter=0; /* handle for TextWordFilter */
+static int le_swig__p_Madoop__MdpObject=0; /* handle for MdpObject */
+static int le_swig__p_Madoop__TextLineFilter=0; /* handle for TextLineFilter */
+static int le_swig__p_std__string=0; /* handle for _p_std__string */
+static int le_swig__p_Madoop__MadoopJobContext=0; /* handle for MadoopJobContext */
+static int le_swig__p_Madoop__TextWord=0; /* handle for TextWord */
+static int le_swig__p_Madoop__ImageFile=0; /* handle for _p_Madoop__ImageFile */
 /* end vdecl subsection */
 /* wrapper section */
-ZEND_NAMED_FUNCTION(_wrap_Madoop_set) {
-  namespace arg1 ;
-  namespace *tmp1 ;
+ZEND_NAMED_FUNCTION(_wrap_new_MadoopJobContext) {
+  Madoop::MadoopJobContext *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (Madoop::MadoopJobContext *)new Madoop::MadoopJobContext();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__MadoopJobContext, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MadoopJobContext_textFile) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  zval **args[2];
+  SwigValueWrapper< Madoop::TextFile > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MadoopJobContext, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MadoopJobContext_textFile. Expected SWIGTYPE_p_Madoop__MadoopJobContext");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__string, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of MadoopJobContext_textFile. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = (arg1)->textFile((std::string const &)*arg2);
+  {
+    Madoop::TextFile * resultobj = new Madoop::TextFile((const Madoop::TextFile &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Madoop__TextFile, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MadoopJobContext_imageFile) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  zval **args[2];
+  Madoop::ImageFile result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MadoopJobContext, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MadoopJobContext_imageFile. Expected SWIGTYPE_p_Madoop__MadoopJobContext");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__string, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of MadoopJobContext_imageFile. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = (arg1)->imageFile((std::string const &)*arg2);
+  {
+    Madoop::ImageFile * resultobj = new Madoop::ImageFile((const Madoop::ImageFile &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Madoop__ImageFile, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MadoopJobContext_videoFile) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  zval **args[2];
+  Madoop::VideoFile result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MadoopJobContext, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MadoopJobContext_videoFile. Expected SWIGTYPE_p_Madoop__MadoopJobContext");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__string, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of MadoopJobContext_videoFile. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = (arg1)->videoFile((std::string const &)*arg2);
+  {
+    Madoop::VideoFile * resultobj = new Madoop::VideoFile((const Madoop::VideoFile &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Madoop__VideoFile, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MadoopJobContext_audioFile) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  zval **args[2];
+  Madoop::AudioFile result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MadoopJobContext, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MadoopJobContext_audioFile. Expected SWIGTYPE_p_Madoop__MadoopJobContext");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__string, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of MadoopJobContext_audioFile. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = (arg1)->audioFile((std::string const &)*arg2);
+  {
+    Madoop::AudioFile * resultobj = new Madoop::AudioFile((const Madoop::AudioFile &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Madoop__AudioFile, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_MadoopJobContext(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::MadoopJobContext *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__MadoopJobContext TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::MadoopJobContext resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MdpObject_write) {
+  Madoop::MdpObject *arg1 = (Madoop::MdpObject *) 0 ;
+  std::string *arg2 = 0 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MdpObject, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MdpObject_write. Expected SWIGTYPE_p_Madoop__MdpObject");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__string, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of MdpObject_write. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  (arg1)->write((std::string const &)*arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_MdpObject(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::MdpObject *arg1 = (Madoop::MdpObject *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::MdpObject *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__MdpObject TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::MdpObject resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_TextLine) {
+  Madoop::TextLine *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (Madoop::TextLine *)new Madoop::TextLine();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__TextLine, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_TextLine(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::TextLine *arg1 = (Madoop::TextLine *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::TextLine *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__TextLine TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::TextLine resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_TextLineFilter) {
+  Madoop::TextLineFilter *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (Madoop::TextLineFilter *)new Madoop::TextLineFilter();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__TextLineFilter, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_TextLineFilter_c_empty) {
+  Madoop::TextLineFilter *arg1 = (Madoop::TextLineFilter *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__TextLineFilter, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of TextLineFilter_c_empty. Expected SWIGTYPE_p_Madoop__TextLineFilter");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->empty();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_TextLineFilter(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::TextLineFilter *arg1 = (Madoop::TextLineFilter *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::TextLineFilter *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__TextLineFilter TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::TextLineFilter resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_TextWord) {
+  Madoop::TextWord *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (Madoop::TextWord *)new Madoop::TextWord();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__TextWord, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_TextWord(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::TextWord *arg1 = (Madoop::TextWord *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::TextWord *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__TextWord TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::TextWord resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_TextWordFilter) {
+  Madoop::TextWordFilter *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (Madoop::TextWordFilter *)new Madoop::TextWordFilter();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__TextWordFilter, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_TextWordFilter_c_empty) {
+  Madoop::TextWordFilter *arg1 = (Madoop::TextWordFilter *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__TextWordFilter, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of TextWordFilter_c_empty. Expected SWIGTYPE_p_Madoop__TextWordFilter");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->empty();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_TextWordFilter(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::TextWordFilter *arg1 = (Madoop::TextWordFilter *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::TextWordFilter *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__TextWordFilter TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::TextWordFilter resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_TextFile) {
+  std::string *arg1 = 0 ;
+  zval **args[1];
+  Madoop::TextFile *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__string, 0) < 0 || arg1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_TextFile. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = (Madoop::TextFile *)new Madoop::TextFile((std::string const &)*arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__TextFile, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_TextFile(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  Madoop::TextFile *arg1 = (Madoop::TextFile *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (Madoop::TextFile *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_Madoop__TextFile TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "Madoop::TextFile resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_mc_set) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
   zval **args[1];
   
   SWIG_ResetError();
@@ -1098,12 +1651,11 @@ ZEND_NAMED_FUNCTION(_wrap_Madoop_set) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &tmp1, SWIGTYPE_p_namespace, 0) < 0 || tmp1 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of Madoop_set. Expected SWIGTYPE_p_namespace");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_Madoop__MadoopJobContext, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of mc_set. Expected SWIGTYPE_p_Madoop__MadoopJobContext");
     }
-    arg1 = *tmp1;
   }
-  Madoop = arg1;
+  Madoop::mc = *arg1;
   
   return;
 fail:
@@ -1111,28 +1663,59 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_Madoop_get) {
-  namespace result;
+ZEND_NAMED_FUNCTION(_wrap_mc_get) {
+  Madoop::MadoopJobContext *result = 0 ;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = Madoop;
-  {
-    namespace * resultobj = (namespace *) emalloc(sizeof(namespace));
-    memcpy(resultobj, &result, sizeof(namespace));
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_namespace, 1);
-  }
+  result = (Madoop::MadoopJobContext *)&Madoop::mc;
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_Madoop__MadoopJobContext, 0);
+  
   return;
 fail:
   SWIG_FAIL();
 }
 
 
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_namespace) {
-  /* No destructor for simple type _p_namespace */
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__VideoFile) {
+  /* No destructor for simple type _p_Madoop__VideoFile */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__TextFile) {
+  __wrap_delete_TextFile(rsrc, SWIGTYPE_p_Madoop__TextFile->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__AudioFile) {
+  /* No destructor for simple type _p_Madoop__AudioFile */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__TextLine) {
+  __wrap_delete_TextLine(rsrc, SWIGTYPE_p_Madoop__TextLine->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__TextWordFilter) {
+  __wrap_delete_TextWordFilter(rsrc, SWIGTYPE_p_Madoop__TextWordFilter->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__MdpObject) {
+  __wrap_delete_MdpObject(rsrc, SWIGTYPE_p_Madoop__MdpObject->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__TextLineFilter) {
+  __wrap_delete_TextLineFilter(rsrc, SWIGTYPE_p_Madoop__TextLineFilter->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__string) {
+  /* No destructor for simple type _p_std__string */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__MadoopJobContext) {
+  __wrap_delete_MadoopJobContext(rsrc, SWIGTYPE_p_Madoop__MadoopJobContext->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__TextWord) {
+  __wrap_delete_TextWord(rsrc, SWIGTYPE_p_Madoop__TextWord->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_Madoop__ImageFile) {
+  /* No destructor for simple type _p_Madoop__ImageFile */
   efree(rsrc->ptr);
 }
 /* end wrapper section */
@@ -1141,11 +1724,24 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_namespace) {
 
 /* entry subsection */
 /* Every non-class user visible function must have an entry here */
-static zend_function_entry mdfs_functions[] = {
- SWIG_ZEND_NAMED_FE(madoop_set,_wrap_Madoop_set,NULL)
- SWIG_ZEND_NAMED_FE(madoop_get,_wrap_Madoop_get,NULL)
- SWIG_ZEND_NAMED_FE(swig_mdfs_alter_newobject,_wrap_swig_mdfs_alter_newobject,NULL)
- SWIG_ZEND_NAMED_FE(swig_mdfs_get_newobject,_wrap_swig_mdfs_get_newobject,NULL)
+static zend_function_entry mdp_functions[] = {
+ SWIG_ZEND_NAMED_FE(new_madoopjobcontext,_wrap_new_MadoopJobContext,NULL)
+ SWIG_ZEND_NAMED_FE(madoopjobcontext_textfile,_wrap_MadoopJobContext_textFile,NULL)
+ SWIG_ZEND_NAMED_FE(madoopjobcontext_imagefile,_wrap_MadoopJobContext_imageFile,NULL)
+ SWIG_ZEND_NAMED_FE(madoopjobcontext_videofile,_wrap_MadoopJobContext_videoFile,NULL)
+ SWIG_ZEND_NAMED_FE(madoopjobcontext_audiofile,_wrap_MadoopJobContext_audioFile,NULL)
+ SWIG_ZEND_NAMED_FE(mdpobject_write,_wrap_MdpObject_write,NULL)
+ SWIG_ZEND_NAMED_FE(new_textline,_wrap_new_TextLine,NULL)
+ SWIG_ZEND_NAMED_FE(new_textlinefilter,_wrap_new_TextLineFilter,NULL)
+ SWIG_ZEND_NAMED_FE(textlinefilter_c_empty,_wrap_TextLineFilter_c_empty,NULL)
+ SWIG_ZEND_NAMED_FE(new_textword,_wrap_new_TextWord,NULL)
+ SWIG_ZEND_NAMED_FE(new_textwordfilter,_wrap_new_TextWordFilter,NULL)
+ SWIG_ZEND_NAMED_FE(textwordfilter_c_empty,_wrap_TextWordFilter_c_empty,NULL)
+ SWIG_ZEND_NAMED_FE(new_textfile,_wrap_new_TextFile,NULL)
+ SWIG_ZEND_NAMED_FE(mc_set,_wrap_mc_set,NULL)
+ SWIG_ZEND_NAMED_FE(mc_get,_wrap_mc_get,NULL)
+ SWIG_ZEND_NAMED_FE(swig_mdp_alter_newobject,_wrap_swig_mdp_alter_newobject,NULL)
+ SWIG_ZEND_NAMED_FE(swig_mdp_get_newobject,_wrap_swig_mdp_get_newobject,NULL)
 {NULL, NULL, NULL}
 };
 
@@ -1154,29 +1750,29 @@ static zend_function_entry mdfs_functions[] = {
 #undef ZEND_MODULE_BUILD_ID
 #define ZEND_MODULE_BUILD_ID (char*)"API" ZEND_TOSTR(ZEND_MODULE_API_NO) ZEND_BUILD_TS ZEND_BUILD_DEBUG ZEND_BUILD_SYSTEM ZEND_BUILD_EXTRA
 #endif
-zend_module_entry mdfs_module_entry = {
+zend_module_entry mdp_module_entry = {
     STANDARD_MODULE_HEADER,
-    (char*)"mdfs",
-    mdfs_functions,
-    PHP_MINIT(mdfs),
-    PHP_MSHUTDOWN(mdfs),
-    PHP_RINIT(mdfs),
-    PHP_RSHUTDOWN(mdfs),
-    PHP_MINFO(mdfs),
+    (char*)"mdp",
+    mdp_functions,
+    PHP_MINIT(mdp),
+    PHP_MSHUTDOWN(mdp),
+    PHP_RINIT(mdp),
+    PHP_RSHUTDOWN(mdp),
+    PHP_MINFO(mdp),
     NO_VERSION_YET,
     STANDARD_MODULE_PROPERTIES
 };
-zend_module_entry* SWIG_module_entry = &mdfs_module_entry;
+zend_module_entry* SWIG_module_entry = &mdp_module_entry;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-SWIGEXPORT zend_module_entry *get_module(void) { return &mdfs_module_entry; }
+SWIGEXPORT zend_module_entry *get_module(void) { return &mdp_module_entry; }
 #ifdef __cplusplus
 }
 #endif
 
-#define SWIG_php_minit PHP_MINIT_FUNCTION(mdfs)
+#define SWIG_php_minit PHP_MINIT_FUNCTION(mdp)
 /* -----------------------------------------------------------------------------
  * Type initialization:
  * This problem is tough by the requirement that no dynamic
@@ -1417,11 +2013,31 @@ SWIG_PropagateClientData(void) {
     SWIG_InitializeModule(0);
 
 /* oinit subsection */
-ZEND_INIT_MODULE_GLOBALS(mdfs, mdfs_init_globals, mdfs_destroy_globals);
+ZEND_INIT_MODULE_GLOBALS(mdp, mdp_init_globals, mdp_destroy_globals);
 
 /* Register resource destructors for pointer types */
-le_swig__p_namespace=zend_register_list_destructors_ex(_wrap_destroy_p_namespace,NULL,(char *)(SWIGTYPE_p_namespace->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_namespace,&le_swig__p_namespace);
+le_swig__p_Madoop__VideoFile=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__VideoFile,NULL,(char *)(SWIGTYPE_p_Madoop__VideoFile->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__VideoFile,&le_swig__p_Madoop__VideoFile);
+le_swig__p_Madoop__TextFile=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__TextFile,NULL,(char *)(SWIGTYPE_p_Madoop__TextFile->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextFile,&le_swig__p_Madoop__TextFile);
+le_swig__p_Madoop__AudioFile=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__AudioFile,NULL,(char *)(SWIGTYPE_p_Madoop__AudioFile->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__AudioFile,&le_swig__p_Madoop__AudioFile);
+le_swig__p_Madoop__TextLine=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__TextLine,NULL,(char *)(SWIGTYPE_p_Madoop__TextLine->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextLine,&le_swig__p_Madoop__TextLine);
+le_swig__p_Madoop__TextWordFilter=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__TextWordFilter,NULL,(char *)(SWIGTYPE_p_Madoop__TextWordFilter->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextWordFilter,&le_swig__p_Madoop__TextWordFilter);
+le_swig__p_Madoop__MdpObject=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__MdpObject,NULL,(char *)(SWIGTYPE_p_Madoop__MdpObject->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__MdpObject,&le_swig__p_Madoop__MdpObject);
+le_swig__p_Madoop__TextLineFilter=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__TextLineFilter,NULL,(char *)(SWIGTYPE_p_Madoop__TextLineFilter->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextLineFilter,&le_swig__p_Madoop__TextLineFilter);
+le_swig__p_std__string=zend_register_list_destructors_ex(_wrap_destroy_p_std__string,NULL,(char *)(SWIGTYPE_p_std__string->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_std__string,&le_swig__p_std__string);
+le_swig__p_Madoop__MadoopJobContext=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__MadoopJobContext,NULL,(char *)(SWIGTYPE_p_Madoop__MadoopJobContext->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__MadoopJobContext,&le_swig__p_Madoop__MadoopJobContext);
+le_swig__p_Madoop__TextWord=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__TextWord,NULL,(char *)(SWIGTYPE_p_Madoop__TextWord->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextWord,&le_swig__p_Madoop__TextWord);
+le_swig__p_Madoop__ImageFile=zend_register_list_destructors_ex(_wrap_destroy_p_Madoop__ImageFile,NULL,(char *)(SWIGTYPE_p_Madoop__ImageFile->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_Madoop__ImageFile,&le_swig__p_Madoop__ImageFile);
 CG(active_class_entry) = NULL;
 /* end oinit subsection */
 
@@ -1431,7 +2047,7 @@ CG(active_class_entry) = NULL;
     return SUCCESS;
 }
 
-PHP_RINIT_FUNCTION(mdfs)
+PHP_RINIT_FUNCTION(mdp)
 {
 /* rinit section */
 
@@ -1440,8 +2056,8 @@ PHP_RINIT_FUNCTION(mdfs)
   zval *z_var;
 
   MAKE_STD_ZVAL(z_var);
-  SWIG_SetPointerZval(z_var, (void*)&Madoop, SWIGTYPE_p_namespace, 0);
-  zend_hash_add(&EG(symbol_table), (char*)"Madoop", sizeof("Madoop"), (void*)&z_var,
+  SWIG_SetPointerZval(z_var, (void*)&Madoop::mc, SWIGTYPE_p_Madoop__MadoopJobContext, 0);
+  zend_hash_add(&EG(symbol_table), (char*)"Madoop::mc", sizeof("Madoop::mc"), (void*)&z_var,
   sizeof(zval *), NULL);
 }
 /* end vinit subsection */
@@ -1449,23 +2065,23 @@ PHP_RINIT_FUNCTION(mdfs)
     return SUCCESS;
 }
 
-PHP_MSHUTDOWN_FUNCTION(mdfs)
+PHP_MSHUTDOWN_FUNCTION(mdp)
 {
 /* shutdown section */
 #ifdef ZTS
-    ts_free_id(mdfs_globals_id);
+    ts_free_id(mdp_globals_id);
 #endif
     return SUCCESS;
 }
 
-PHP_RSHUTDOWN_FUNCTION(mdfs)
+PHP_RSHUTDOWN_FUNCTION(mdp)
 {
 /* rshutdown section */
 
     return SUCCESS;
 }
 
-PHP_MINFO_FUNCTION(mdfs)
+PHP_MINFO_FUNCTION(mdp)
 {
 }
 /* end init section */

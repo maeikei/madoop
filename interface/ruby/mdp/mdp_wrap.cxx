@@ -10,6 +10,30 @@
 
 #define SWIGRUBY
 
+
+#ifdef __cplusplus
+/* SwigValueWrapper is described in swig.swg */
+template<typename T> class SwigValueWrapper {
+  struct SwigMovePointer {
+    T *ptr;
+    SwigMovePointer(T *p) : ptr(p) { }
+    ~SwigMovePointer() { delete ptr; }
+    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
+  } pointer;
+  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
+  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
+public:
+  SwigValueWrapper() : pointer(0) { }
+  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
+  operator T&() const { return *pointer.ptr; }
+  T *operator&() { return pointer.ptr; }
+};
+
+template <typename T> T SwigValueInit() {
+  return T();
+}
+#endif
+
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -1778,19 +1802,29 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_namespace swig_types[1]
-static swig_type_info *swig_types[3];
-static swig_module_info swig_module = {swig_types, 2, 0, 0, 0, 0};
+#define SWIGTYPE_p_Madoop__AudioFile swig_types[0]
+#define SWIGTYPE_p_Madoop__ImageFile swig_types[1]
+#define SWIGTYPE_p_Madoop__MadoopJobContext swig_types[2]
+#define SWIGTYPE_p_Madoop__MdpObject swig_types[3]
+#define SWIGTYPE_p_Madoop__TextFile swig_types[4]
+#define SWIGTYPE_p_Madoop__TextLine swig_types[5]
+#define SWIGTYPE_p_Madoop__TextLineFilter swig_types[6]
+#define SWIGTYPE_p_Madoop__TextWord swig_types[7]
+#define SWIGTYPE_p_Madoop__TextWordFilter swig_types[8]
+#define SWIGTYPE_p_Madoop__VideoFile swig_types[9]
+#define SWIGTYPE_p_char swig_types[10]
+#define SWIGTYPE_p_std__string swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_init    Init_mdfs
-#define SWIG_name    "Mdfs"
+#define SWIG_init    Init_mdp
+#define SWIG_name    "Mdp"
 
-static VALUE mMdfs;
+static VALUE mMdp;
 
 #define SWIG_RUBY_THREAD_BEGIN_BLOCK
 #define SWIG_RUBY_THREAD_END_BLOCK
@@ -1800,34 +1834,534 @@ static VALUE mMdfs;
 #define SWIG_VERSION SWIGVERSION
 
 
-#define SWIG_as_voidptr(a) (void *)((const void *)(a)) 
-#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),(void**)(a)) 
+#define SWIG_as_voidptr(a) const_cast< void * >(static_cast< const void * >(a)) 
+#define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),reinterpret_cast< void** >(a)) 
+
+
+#include <stdexcept>
 
 
 #include "mdp/mdp.hpp"
 using namespace Madoop
 
+
+SWIGINTERNINLINE VALUE
+SWIG_From_bool  (bool value)
+{
+  return value ? Qtrue : Qfalse;
+}
+
+static swig_class SwigClassMadoopJobContext;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Madoop_get(VALUE self) {
+_wrap_MadoopJobContext_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_MadoopJobContext_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__MadoopJobContext);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_MadoopJobContext(int argc, VALUE *argv, VALUE self) {
+  Madoop::MadoopJobContext *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Madoop::MadoopJobContext *)new Madoop::MadoopJobContext();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_MadoopJobContext_textFile(int argc, VALUE *argv, VALUE self) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  SwigValueWrapper< Madoop::TextFile > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__MadoopJobContext, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::MadoopJobContext *","textFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::MadoopJobContext * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","textFile", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","textFile", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  result = (arg1)->textFile((std::string const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Madoop::TextFile(static_cast< const Madoop::TextFile& >(result))), SWIGTYPE_p_Madoop__TextFile, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_MadoopJobContext_imageFile(int argc, VALUE *argv, VALUE self) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Madoop::ImageFile result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__MadoopJobContext, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::MadoopJobContext *","imageFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::MadoopJobContext * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","imageFile", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","imageFile", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  result = (arg1)->imageFile((std::string const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Madoop::ImageFile(static_cast< const Madoop::ImageFile& >(result))), SWIGTYPE_p_Madoop__ImageFile, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_MadoopJobContext_videoFile(int argc, VALUE *argv, VALUE self) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Madoop::VideoFile result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__MadoopJobContext, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::MadoopJobContext *","videoFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::MadoopJobContext * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","videoFile", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","videoFile", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  result = (arg1)->videoFile((std::string const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Madoop::VideoFile(static_cast< const Madoop::VideoFile& >(result))), SWIGTYPE_p_Madoop__VideoFile, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_MadoopJobContext_audioFile(int argc, VALUE *argv, VALUE self) {
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Madoop::AudioFile result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__MadoopJobContext, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::MadoopJobContext *","audioFile", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::MadoopJobContext * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","audioFile", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","audioFile", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  result = (arg1)->audioFile((std::string const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Madoop::AudioFile(static_cast< const Madoop::AudioFile& >(result))), SWIGTYPE_p_Madoop__AudioFile, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_MadoopJobContext(Madoop::MadoopJobContext *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassMdpObject;
+
+SWIGINTERN VALUE
+_wrap_MdpObject_write(int argc, VALUE *argv, VALUE self) {
+  Madoop::MdpObject *arg1 = (Madoop::MdpObject *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__MdpObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::MdpObject *","write", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::MdpObject * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  (arg1)->write((std::string const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_MdpObject(Madoop::MdpObject *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassTextLine;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TextLine_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TextLine_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__TextLine);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TextLine(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextLine *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Madoop::TextLine *)new Madoop::TextLine();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_TextLine(Madoop::TextLine *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassTextLineFilter;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TextLineFilter_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TextLineFilter_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__TextLineFilter);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TextLineFilter(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextLineFilter *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Madoop::TextLineFilter *)new Madoop::TextLineFilter();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: Mdp::TextLineFilter.empty
+
+  call-seq:
+    empty -> bool
+
+Check if TextLineFilter is empty.
+*/
+SWIGINTERN VALUE
+_wrap_TextLineFilter_empty(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextLineFilter *arg1 = (Madoop::TextLineFilter *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__TextLineFilter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::TextLineFilter *","empty", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::TextLineFilter * >(argp1);
+  result = (bool)(arg1)->empty();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_TextLineFilter(Madoop::TextLineFilter *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassTextWord;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TextWord_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TextWord_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__TextWord);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TextWord(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextWord *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Madoop::TextWord *)new Madoop::TextWord();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_TextWord(Madoop::TextWord *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassTextWordFilter;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TextWordFilter_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TextWordFilter_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__TextWordFilter);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TextWordFilter(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextWordFilter *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Madoop::TextWordFilter *)new Madoop::TextWordFilter();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: Mdp::TextWordFilter.empty
+
+  call-seq:
+    empty -> bool
+
+Check if TextWordFilter is empty.
+*/
+SWIGINTERN VALUE
+_wrap_TextWordFilter_empty(int argc, VALUE *argv, VALUE self) {
+  Madoop::TextWordFilter *arg1 = (Madoop::TextWordFilter *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Madoop__TextWordFilter, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Madoop::TextWordFilter *","empty", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Madoop::TextWordFilter * >(argp1);
+  result = (bool)(arg1)->empty();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_TextWordFilter(Madoop::TextWordFilter *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassTextFile;
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_TextFile_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_TextFile_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Madoop__TextFile);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_TextFile(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  Madoop::TextFile *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","TextFile", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","TextFile", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
+  result = (Madoop::TextFile *)new Madoop::TextFile((std::string const &)*arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Madoop_TextFile(Madoop::TextFile *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_mc_get(VALUE self) {
   VALUE _val;
   
-  _val = SWIG_NewPointerObj(SWIG_as_voidptr(&Madoop), SWIGTYPE_p_namespace,  0 );
+  _val = SWIG_NewPointerObj(SWIG_as_voidptr(&Madoop::mc), SWIGTYPE_p_Madoop__MadoopJobContext,  0 );
   return _val;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Madoop_set(VALUE self, VALUE _val) {
+_wrap_mc_set(VALUE self, VALUE _val) {
   {
     void *argp = 0;
-    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_namespace,  0 );
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_Madoop__MadoopJobContext,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Madoop""' of type '""namespace""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Madoop::mc""' of type '""Madoop::MadoopJobContext""'");
     }
     if (!argp) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Madoop""' of type '""namespace""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Madoop::mc""' of type '""Madoop::MadoopJobContext""'");
     } else {
-      Madoop = *((namespace *)(argp));
+      Madoop::mc = *(reinterpret_cast< Madoop::MadoopJobContext * >(argp));
     }
   }
   return _val;
@@ -1839,20 +2373,69 @@ fail:
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_Madoop__TextLineTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextLine *) x));
+}
+static void *_p_Madoop__TextFileTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextFile *) x));
+}
+static void *_p_Madoop__TextWordTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextWord *) x));
+}
+static swig_type_info _swigt__p_Madoop__AudioFile = {"_p_Madoop__AudioFile", "Madoop::AudioFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__ImageFile = {"_p_Madoop__ImageFile", "Madoop::ImageFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__MadoopJobContext = {"_p_Madoop__MadoopJobContext", "Madoop::MadoopJobContext *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__MdpObject = {"_p_Madoop__MdpObject", "Madoop::MdpObject *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextFile = {"_p_Madoop__TextFile", "Madoop::TextFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextLine = {"_p_Madoop__TextLine", "Madoop::TextLine *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextLineFilter = {"_p_Madoop__TextLineFilter", "Madoop::TextLineFilter *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextWord = {"_p_Madoop__TextWord", "Madoop::TextWord *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__TextWordFilter = {"_p_Madoop__TextWordFilter", "Madoop::TextWordFilter *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__VideoFile = {"_p_Madoop__VideoFile", "Madoop::VideoFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_namespace = {"_p_namespace", "namespace *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_Madoop__AudioFile,
+  &_swigt__p_Madoop__ImageFile,
+  &_swigt__p_Madoop__MadoopJobContext,
+  &_swigt__p_Madoop__MdpObject,
+  &_swigt__p_Madoop__TextFile,
+  &_swigt__p_Madoop__TextLine,
+  &_swigt__p_Madoop__TextLineFilter,
+  &_swigt__p_Madoop__TextWord,
+  &_swigt__p_Madoop__TextWordFilter,
+  &_swigt__p_Madoop__VideoFile,
   &_swigt__p_char,
-  &_swigt__p_namespace,
+  &_swigt__p_std__string,
 };
 
+static swig_cast_info _swigc__p_Madoop__AudioFile[] = {  {&_swigt__p_Madoop__AudioFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__ImageFile[] = {  {&_swigt__p_Madoop__ImageFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MadoopJobContext[] = {  {&_swigt__p_Madoop__MadoopJobContext, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MdpObject[] = {  {&_swigt__p_Madoop__TextLine, _p_Madoop__TextLineTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__TextFile, _p_Madoop__TextFileTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__MdpObject, 0, 0, 0},  {&_swigt__p_Madoop__TextWord, _p_Madoop__TextWordTo_p_Madoop__MdpObject, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextFile[] = {  {&_swigt__p_Madoop__TextFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLine[] = {  {&_swigt__p_Madoop__TextLine, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLineFilter[] = {  {&_swigt__p_Madoop__TextLineFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWord[] = {  {&_swigt__p_Madoop__TextWord, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWordFilter[] = {  {&_swigt__p_Madoop__TextWordFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__VideoFile[] = {  {&_swigt__p_Madoop__VideoFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_namespace[] = {  {&_swigt__p_namespace, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_Madoop__AudioFile,
+  _swigc__p_Madoop__ImageFile,
+  _swigc__p_Madoop__MadoopJobContext,
+  _swigc__p_Madoop__MdpObject,
+  _swigc__p_Madoop__TextFile,
+  _swigc__p_Madoop__TextLine,
+  _swigc__p_Madoop__TextLineFilter,
+  _swigc__p_Madoop__TextWord,
+  _swigc__p_Madoop__TextWordFilter,
+  _swigc__p_Madoop__VideoFile,
   _swigc__p_char,
-  _swigc__p_namespace,
+  _swigc__p_std__string,
 };
 
 
@@ -2099,11 +2682,11 @@ SWIG_PropagateClientData(void) {
 #ifdef __cplusplus
 extern "C"
 #endif
-SWIGEXPORT void Init_mdfs(void) {
+SWIGEXPORT void Init_mdp(void) {
   size_t i;
   
   SWIG_InitRuntime();
-  mMdfs = rb_define_module("Mdfs");
+  mMdp = rb_define_module("Mdp");
   
   SWIG_InitializeModule(0);
   for (i = 0; i < swig_module.size; i++) {
@@ -2111,7 +2694,69 @@ SWIGEXPORT void Init_mdfs(void) {
   }
   
   SWIG_RubyInitializeTrackings();
-  rb_define_singleton_method(mMdfs, "Madoop", _wrap_Madoop_get, 0);
-  rb_define_singleton_method(mMdfs, "Madoop=", _wrap_Madoop_set, 1);
+  
+  SwigClassMadoopJobContext.klass = rb_define_class_under(mMdp, "MadoopJobContext", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__MadoopJobContext, (void *) &SwigClassMadoopJobContext);
+  rb_define_alloc_func(SwigClassMadoopJobContext.klass, _wrap_MadoopJobContext_allocate);
+  rb_define_method(SwigClassMadoopJobContext.klass, "initialize", VALUEFUNC(_wrap_new_MadoopJobContext), -1);
+  rb_define_method(SwigClassMadoopJobContext.klass, "textFile", VALUEFUNC(_wrap_MadoopJobContext_textFile), -1);
+  rb_define_method(SwigClassMadoopJobContext.klass, "imageFile", VALUEFUNC(_wrap_MadoopJobContext_imageFile), -1);
+  rb_define_method(SwigClassMadoopJobContext.klass, "videoFile", VALUEFUNC(_wrap_MadoopJobContext_videoFile), -1);
+  rb_define_method(SwigClassMadoopJobContext.klass, "audioFile", VALUEFUNC(_wrap_MadoopJobContext_audioFile), -1);
+  SwigClassMadoopJobContext.mark = 0;
+  SwigClassMadoopJobContext.destroy = (void (*)(void *)) free_Madoop_MadoopJobContext;
+  SwigClassMadoopJobContext.trackObjects = 0;
+  
+  SwigClassMdpObject.klass = rb_define_class_under(mMdp, "MdpObject", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__MdpObject, (void *) &SwigClassMdpObject);
+  rb_undef_alloc_func(SwigClassMdpObject.klass);
+  rb_define_method(SwigClassMdpObject.klass, "write", VALUEFUNC(_wrap_MdpObject_write), -1);
+  SwigClassMdpObject.mark = 0;
+  SwigClassMdpObject.destroy = (void (*)(void *)) free_Madoop_MdpObject;
+  SwigClassMdpObject.trackObjects = 0;
+  
+  SwigClassTextLine.klass = rb_define_class_under(mMdp, "TextLine", ((swig_class *) SWIGTYPE_p_Madoop__MdpObject->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextLine, (void *) &SwigClassTextLine);
+  rb_define_alloc_func(SwigClassTextLine.klass, _wrap_TextLine_allocate);
+  rb_define_method(SwigClassTextLine.klass, "initialize", VALUEFUNC(_wrap_new_TextLine), -1);
+  SwigClassTextLine.mark = 0;
+  SwigClassTextLine.destroy = (void (*)(void *)) free_Madoop_TextLine;
+  SwigClassTextLine.trackObjects = 0;
+  
+  SwigClassTextLineFilter.klass = rb_define_class_under(mMdp, "TextLineFilter", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextLineFilter, (void *) &SwigClassTextLineFilter);
+  rb_define_alloc_func(SwigClassTextLineFilter.klass, _wrap_TextLineFilter_allocate);
+  rb_define_method(SwigClassTextLineFilter.klass, "initialize", VALUEFUNC(_wrap_new_TextLineFilter), -1);
+  rb_define_method(SwigClassTextLineFilter.klass, "empty", VALUEFUNC(_wrap_TextLineFilter_empty), -1);
+  SwigClassTextLineFilter.mark = 0;
+  SwigClassTextLineFilter.destroy = (void (*)(void *)) free_Madoop_TextLineFilter;
+  SwigClassTextLineFilter.trackObjects = 0;
+  
+  SwigClassTextWord.klass = rb_define_class_under(mMdp, "TextWord", ((swig_class *) SWIGTYPE_p_Madoop__MdpObject->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextWord, (void *) &SwigClassTextWord);
+  rb_define_alloc_func(SwigClassTextWord.klass, _wrap_TextWord_allocate);
+  rb_define_method(SwigClassTextWord.klass, "initialize", VALUEFUNC(_wrap_new_TextWord), -1);
+  SwigClassTextWord.mark = 0;
+  SwigClassTextWord.destroy = (void (*)(void *)) free_Madoop_TextWord;
+  SwigClassTextWord.trackObjects = 0;
+  
+  SwigClassTextWordFilter.klass = rb_define_class_under(mMdp, "TextWordFilter", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextWordFilter, (void *) &SwigClassTextWordFilter);
+  rb_define_alloc_func(SwigClassTextWordFilter.klass, _wrap_TextWordFilter_allocate);
+  rb_define_method(SwigClassTextWordFilter.klass, "initialize", VALUEFUNC(_wrap_new_TextWordFilter), -1);
+  rb_define_method(SwigClassTextWordFilter.klass, "empty", VALUEFUNC(_wrap_TextWordFilter_empty), -1);
+  SwigClassTextWordFilter.mark = 0;
+  SwigClassTextWordFilter.destroy = (void (*)(void *)) free_Madoop_TextWordFilter;
+  SwigClassTextWordFilter.trackObjects = 0;
+  
+  SwigClassTextFile.klass = rb_define_class_under(mMdp, "TextFile", ((swig_class *) SWIGTYPE_p_Madoop__MdpObject->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_Madoop__TextFile, (void *) &SwigClassTextFile);
+  rb_define_alloc_func(SwigClassTextFile.klass, _wrap_TextFile_allocate);
+  rb_define_method(SwigClassTextFile.klass, "initialize", VALUEFUNC(_wrap_new_TextFile), -1);
+  SwigClassTextFile.mark = 0;
+  SwigClassTextFile.destroy = (void (*)(void *)) free_Madoop_TextFile;
+  SwigClassTextFile.trackObjects = 0;
+  rb_define_singleton_method(mMdp, "mc", VALUEFUNC(_wrap_mc_get), 0);
+  rb_define_singleton_method(mMdp, "mc=", VALUEFUNC(_wrap_mc_set), 1);
 }
 

@@ -30,6 +30,11 @@ PHP_RINIT_FUNCTION(mdfs);
 PHP_RSHUTDOWN_FUNCTION(mdfs);
 PHP_MINFO_FUNCTION(mdfs);
 
-ZEND_NAMED_FUNCTION(_wrap_Madoop_set);
-ZEND_NAMED_FUNCTION(_wrap_Madoop_get);
+ZEND_NAMED_FUNCTION(_wrap_new_mdfsException);
+ZEND_NAMED_FUNCTION(_wrap_new_mdfsFile);
+ZEND_NAMED_FUNCTION(_wrap_mdfsFile_write);
+ZEND_NAMED_FUNCTION(_wrap_mdfsFile_append);
+ZEND_NAMED_FUNCTION(_wrap_mdfsFile_read);
+ZEND_NAMED_FUNCTION(_wrap_new_mdfsDir);
+ZEND_NAMED_FUNCTION(_wrap_new_mdfsFS);
 #endif /* PHP_MDFS_H */

@@ -7,18 +7,18 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class SWIGTYPE_p_namespace {
+public class SWIGTYPE_p_void {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_namespace(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_void(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_namespace() {
+  protected SWIGTYPE_p_void() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_namespace obj) {
+  protected static long getCPtr(SWIGTYPE_p_void obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

@@ -7,19 +7,14 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class SWIGTYPE_p_namespace {
-  private long swigCPtr;
-
-  protected SWIGTYPE_p_namespace(long cPtr, boolean futureUse) {
-    swigCPtr = cPtr;
+public class mdp {
+  public static void setMc(MadoopJobContext value) {
+    mdpJNI.mc_set(MadoopJobContext.getCPtr(value), value);
   }
 
-  protected SWIGTYPE_p_namespace() {
-    swigCPtr = 0;
+  public static MadoopJobContext getMc() {
+    long cPtr = mdpJNI.mc_get();
+    return (cPtr == 0) ? null : new MadoopJobContext(cPtr, false);
   }
 
-  protected static long getCPtr(SWIGTYPE_p_namespace obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
 }
-

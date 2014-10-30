@@ -7,5 +7,19 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class mdfs {
+public class SWIGTYPE_p_Madoop__ImageFile {
+  private long swigCPtr;
+
+  protected SWIGTYPE_p_Madoop__ImageFile(long cPtr, boolean futureUse) {
+    swigCPtr = cPtr;
+  }
+
+  protected SWIGTYPE_p_Madoop__ImageFile() {
+    swigCPtr = 0;
+  }
+
+  protected static long getCPtr(SWIGTYPE_p_Madoop__ImageFile obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
+

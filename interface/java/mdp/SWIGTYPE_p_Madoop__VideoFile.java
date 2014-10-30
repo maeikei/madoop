@@ -7,7 +7,19 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class mdfsJNI {
-  public final static native void Madoop_set(long jarg1);
-  public final static native long Madoop_get();
+public class SWIGTYPE_p_Madoop__VideoFile {
+  private long swigCPtr;
+
+  protected SWIGTYPE_p_Madoop__VideoFile(long cPtr, boolean futureUse) {
+    swigCPtr = cPtr;
+  }
+
+  protected SWIGTYPE_p_Madoop__VideoFile() {
+    swigCPtr = 0;
+  }
+
+  protected static long getCPtr(SWIGTYPE_p_Madoop__VideoFile obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
+

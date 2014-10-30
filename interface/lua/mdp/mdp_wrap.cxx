@@ -12,6 +12,30 @@
 #define SWIG_LUA_TARGET SWIG_LUA_FLAVOR_LUA
 #define SWIG_LUA_MODULE_GLOBAL
 
+
+#ifdef __cplusplus
+/* SwigValueWrapper is described in swig.swg */
+template<typename T> class SwigValueWrapper {
+  struct SwigMovePointer {
+    T *ptr;
+    SwigMovePointer(T *p) : ptr(p) { }
+    ~SwigMovePointer() { delete ptr; }
+    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
+  } pointer;
+  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
+  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
+public:
+  SwigValueWrapper() : pointer(0) { }
+  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
+  operator T&() const { return *pointer.ptr; }
+  T *operator&() { return pointer.ptr; }
+};
+
+template <typename T> T SwigValueInit() {
+  return T();
+}
+#endif
+
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -1838,40 +1862,240 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_namespace swig_types[0]
-static swig_type_info *swig_types[2];
-static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
+#define SWIGTYPE_p_Madoop__AudioFile swig_types[0]
+#define SWIGTYPE_p_Madoop__ImageFile swig_types[1]
+#define SWIGTYPE_p_Madoop__MadoopJobContext swig_types[2]
+#define SWIGTYPE_p_Madoop__MdpObject swig_types[3]
+#define SWIGTYPE_p_Madoop__TextFile swig_types[4]
+#define SWIGTYPE_p_Madoop__TextLine swig_types[5]
+#define SWIGTYPE_p_Madoop__TextLineFilter swig_types[6]
+#define SWIGTYPE_p_Madoop__TextWord swig_types[7]
+#define SWIGTYPE_p_Madoop__TextWordFilter swig_types[8]
+#define SWIGTYPE_p_Madoop__VideoFile swig_types[9]
+#define SWIGTYPE_p_std__string swig_types[10]
+static swig_type_info *swig_types[12];
+static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_name      "mdfs"
-#define SWIG_init      luaopen_mdfs
-#define SWIG_init_user luaopen_mdfs_user
+#define SWIG_name      "mdp"
+#define SWIG_init      luaopen_mdp
+#define SWIG_init_user luaopen_mdp_user
 
-#define SWIG_LUACODE   luaopen_mdfs_luacode
+#define SWIG_LUACODE   luaopen_mdp_luacode
 
-#include "mdfs/mdfs.hpp"
+namespace swig {
+typedef struct{} LANGUAGE_OBJ;
+}
+
+
+#include "mdp/mdp.hpp"
 using namespace Madoop
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-static int _wrap_Madoop_set(lua_State* L) {
+static int _wrap_new_MadoopJobContext(lua_State* L) {
   int SWIG_arg = 0;
-  namespace arg1 ;
-  namespace *argp1 ;
+  Madoop::MadoopJobContext *result = 0 ;
   
-  SWIG_check_num_args("Madoop",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop",1,"namespace");
+  SWIG_check_num_args("Madoop::MadoopJobContext::MadoopJobContext",0,0)
+  result = (Madoop::MadoopJobContext *)new Madoop::MadoopJobContext();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__MadoopJobContext,1); SWIG_arg++; 
+  return SWIG_arg;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_namespace,0))){
-    SWIG_fail_ptr("Madoop_set",1,SWIGTYPE_p_namespace);
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MadoopJobContext_textFile(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  SwigValueWrapper< Madoop::TextFile > result;
+  
+  SWIG_check_num_args("Madoop::MadoopJobContext::textFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::MadoopJobContext::textFile",1,"Madoop::MadoopJobContext *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::MadoopJobContext::textFile",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MadoopJobContext,0))){
+    SWIG_fail_ptr("MadoopJobContext_textFile",1,SWIGTYPE_p_Madoop__MadoopJobContext);
   }
-  arg1 = *argp1;
   
-  Madoop = arg1;
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("MadoopJobContext_textFile",2,SWIGTYPE_p_std__string);
+  }
+  
+  result = (arg1)->textFile((std::string const &)*arg2);
+  {
+    Madoop::TextFile * resultptr = new Madoop::TextFile((const Madoop::TextFile &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Madoop__TextFile,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MadoopJobContext_imageFile(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  Madoop::ImageFile result;
+  
+  SWIG_check_num_args("Madoop::MadoopJobContext::imageFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::MadoopJobContext::imageFile",1,"Madoop::MadoopJobContext *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::MadoopJobContext::imageFile",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MadoopJobContext,0))){
+    SWIG_fail_ptr("MadoopJobContext_imageFile",1,SWIGTYPE_p_Madoop__MadoopJobContext);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("MadoopJobContext_imageFile",2,SWIGTYPE_p_std__string);
+  }
+  
+  result = (arg1)->imageFile((std::string const &)*arg2);
+  {
+    Madoop::ImageFile * resultptr = new Madoop::ImageFile((const Madoop::ImageFile &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Madoop__ImageFile,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MadoopJobContext_videoFile(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  Madoop::VideoFile result;
+  
+  SWIG_check_num_args("Madoop::MadoopJobContext::videoFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::MadoopJobContext::videoFile",1,"Madoop::MadoopJobContext *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::MadoopJobContext::videoFile",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MadoopJobContext,0))){
+    SWIG_fail_ptr("MadoopJobContext_videoFile",1,SWIGTYPE_p_Madoop__MadoopJobContext);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("MadoopJobContext_videoFile",2,SWIGTYPE_p_std__string);
+  }
+  
+  result = (arg1)->videoFile((std::string const &)*arg2);
+  {
+    Madoop::VideoFile * resultptr = new Madoop::VideoFile((const Madoop::VideoFile &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Madoop__VideoFile,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MadoopJobContext_audioFile(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  std::string *arg2 = 0 ;
+  Madoop::AudioFile result;
+  
+  SWIG_check_num_args("Madoop::MadoopJobContext::audioFile",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::MadoopJobContext::audioFile",1,"Madoop::MadoopJobContext *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::MadoopJobContext::audioFile",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MadoopJobContext,0))){
+    SWIG_fail_ptr("MadoopJobContext_audioFile",1,SWIGTYPE_p_Madoop__MadoopJobContext);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("MadoopJobContext_audioFile",2,SWIGTYPE_p_std__string);
+  }
+  
+  result = (arg1)->audioFile((std::string const &)*arg2);
+  {
+    Madoop::AudioFile * resultptr = new Madoop::AudioFile((const Madoop::AudioFile &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Madoop__AudioFile,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MadoopJobContext(void *obj) {
+Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_MadoopJobContext_methods[] = {
+    {"textFile", _wrap_MadoopJobContext_textFile}, 
+    {"imageFile", _wrap_MadoopJobContext_imageFile}, 
+    {"videoFile", _wrap_MadoopJobContext_videoFile}, 
+    {"audioFile", _wrap_MadoopJobContext_audioFile}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_MadoopJobContext_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_MadoopJobContext_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_MadoopJobContext_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_MadoopJobContext_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_MadoopJobContext_bases[] = {0};
+static const char *swig_Madoop_MadoopJobContext_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_MadoopJobContext = { "MadoopJobContext", &SWIGTYPE_p_Madoop__MadoopJobContext,_wrap_new_MadoopJobContext, swig_delete_MadoopJobContext, swig_Madoop_MadoopJobContext_methods, swig_Madoop_MadoopJobContext_attributes, { "MadoopJobContext", swig_Madoop_MadoopJobContext_cls_methods, swig_Madoop_MadoopJobContext_cls_attributes, swig_Madoop_MadoopJobContext_cls_constants }, swig_Madoop_MadoopJobContext_bases, swig_Madoop_MadoopJobContext_base_names };
+
+static int _wrap_MdpObject_write(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MdpObject *arg1 = (Madoop::MdpObject *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  SWIG_check_num_args("Madoop::MdpObject::write",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::MdpObject::write",1,"Madoop::MdpObject *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::MdpObject::write",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MdpObject,0))){
+    SWIG_fail_ptr("MdpObject_write",1,SWIGTYPE_p_Madoop__MdpObject);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("MdpObject_write",2,SWIGTYPE_p_std__string);
+  }
+  
+  (arg1)->write((std::string const &)*arg2);
   
   return SWIG_arg;
   
@@ -1883,18 +2107,317 @@ fail:
 }
 
 
-static int _wrap_Madoop_get(lua_State* L) {
+static void swig_delete_MdpObject(void *obj) {
+Madoop::MdpObject *arg1 = (Madoop::MdpObject *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_MdpObject_methods[] = {
+    {"write", _wrap_MdpObject_write}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_MdpObject_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_MdpObject_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_MdpObject_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_MdpObject_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_MdpObject_bases[] = {0};
+static const char *swig_Madoop_MdpObject_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_MdpObject = { "MdpObject", &SWIGTYPE_p_Madoop__MdpObject,0, swig_delete_MdpObject, swig_Madoop_MdpObject_methods, swig_Madoop_MdpObject_attributes, { "MdpObject", swig_Madoop_MdpObject_cls_methods, swig_Madoop_MdpObject_cls_attributes, swig_Madoop_MdpObject_cls_constants }, swig_Madoop_MdpObject_bases, swig_Madoop_MdpObject_base_names };
+
+static int _wrap_new_TextLine(lua_State* L) {
   int SWIG_arg = 0;
-  namespace result;
+  Madoop::TextLine *result = 0 ;
   
-  SWIG_check_num_args("Madoop",0,0)
-  result = Madoop;
-  {
-    namespace * resultptr;
-    resultptr = (namespace *) malloc(sizeof(namespace));
-    memmove(resultptr, &result, sizeof(namespace));
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_namespace,1); SWIG_arg++;
+  SWIG_check_num_args("Madoop::TextLine::TextLine",0,0)
+  result = (Madoop::TextLine *)new Madoop::TextLine();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__TextLine,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TextLine(void *obj) {
+Madoop::TextLine *arg1 = (Madoop::TextLine *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_TextLine_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_TextLine_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_TextLine_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_TextLine_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_TextLine_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_TextLine_bases[] = {0,0};
+static const char *swig_Madoop_TextLine_base_names[] = {"Madoop::MdpObject *",0};
+static swig_lua_class _wrap_class_Madoop_TextLine = { "TextLine", &SWIGTYPE_p_Madoop__TextLine,_wrap_new_TextLine, swig_delete_TextLine, swig_Madoop_TextLine_methods, swig_Madoop_TextLine_attributes, { "TextLine", swig_Madoop_TextLine_cls_methods, swig_Madoop_TextLine_cls_attributes, swig_Madoop_TextLine_cls_constants }, swig_Madoop_TextLine_bases, swig_Madoop_TextLine_base_names };
+
+static int _wrap_new_TextLineFilter(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::TextLineFilter *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::TextLineFilter::TextLineFilter",0,0)
+  result = (Madoop::TextLineFilter *)new Madoop::TextLineFilter();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__TextLineFilter,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TextLineFilter_empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::TextLineFilter *arg1 = (Madoop::TextLineFilter *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Madoop::TextLineFilter::empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::TextLineFilter::empty",1,"Madoop::TextLineFilter *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__TextLineFilter,0))){
+    SWIG_fail_ptr("TextLineFilter_empty",1,SWIGTYPE_p_Madoop__TextLineFilter);
   }
+  
+  result = (bool)(arg1)->empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TextLineFilter(void *obj) {
+Madoop::TextLineFilter *arg1 = (Madoop::TextLineFilter *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_TextLineFilter_methods[] = {
+    {"empty", _wrap_TextLineFilter_empty}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_TextLineFilter_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_TextLineFilter_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_TextLineFilter_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_TextLineFilter_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_TextLineFilter_bases[] = {0};
+static const char *swig_Madoop_TextLineFilter_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_TextLineFilter = { "TextLineFilter", &SWIGTYPE_p_Madoop__TextLineFilter,_wrap_new_TextLineFilter, swig_delete_TextLineFilter, swig_Madoop_TextLineFilter_methods, swig_Madoop_TextLineFilter_attributes, { "TextLineFilter", swig_Madoop_TextLineFilter_cls_methods, swig_Madoop_TextLineFilter_cls_attributes, swig_Madoop_TextLineFilter_cls_constants }, swig_Madoop_TextLineFilter_bases, swig_Madoop_TextLineFilter_base_names };
+
+static int _wrap_new_TextWord(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::TextWord *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::TextWord::TextWord",0,0)
+  result = (Madoop::TextWord *)new Madoop::TextWord();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__TextWord,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TextWord(void *obj) {
+Madoop::TextWord *arg1 = (Madoop::TextWord *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_TextWord_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_TextWord_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_TextWord_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_TextWord_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_TextWord_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_TextWord_bases[] = {0,0};
+static const char *swig_Madoop_TextWord_base_names[] = {"Madoop::MdpObject *",0};
+static swig_lua_class _wrap_class_Madoop_TextWord = { "TextWord", &SWIGTYPE_p_Madoop__TextWord,_wrap_new_TextWord, swig_delete_TextWord, swig_Madoop_TextWord_methods, swig_Madoop_TextWord_attributes, { "TextWord", swig_Madoop_TextWord_cls_methods, swig_Madoop_TextWord_cls_attributes, swig_Madoop_TextWord_cls_constants }, swig_Madoop_TextWord_bases, swig_Madoop_TextWord_base_names };
+
+static int _wrap_new_TextWordFilter(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::TextWordFilter *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::TextWordFilter::TextWordFilter",0,0)
+  result = (Madoop::TextWordFilter *)new Madoop::TextWordFilter();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__TextWordFilter,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TextWordFilter_empty(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::TextWordFilter *arg1 = (Madoop::TextWordFilter *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Madoop::TextWordFilter::empty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::TextWordFilter::empty",1,"Madoop::TextWordFilter *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__TextWordFilter,0))){
+    SWIG_fail_ptr("TextWordFilter_empty",1,SWIGTYPE_p_Madoop__TextWordFilter);
+  }
+  
+  result = (bool)(arg1)->empty();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TextWordFilter(void *obj) {
+Madoop::TextWordFilter *arg1 = (Madoop::TextWordFilter *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_TextWordFilter_methods[] = {
+    {"empty", _wrap_TextWordFilter_empty}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_TextWordFilter_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_TextWordFilter_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_TextWordFilter_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_TextWordFilter_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_TextWordFilter_bases[] = {0};
+static const char *swig_Madoop_TextWordFilter_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_TextWordFilter = { "TextWordFilter", &SWIGTYPE_p_Madoop__TextWordFilter,_wrap_new_TextWordFilter, swig_delete_TextWordFilter, swig_Madoop_TextWordFilter_methods, swig_Madoop_TextWordFilter_attributes, { "TextWordFilter", swig_Madoop_TextWordFilter_cls_methods, swig_Madoop_TextWordFilter_cls_attributes, swig_Madoop_TextWordFilter_cls_constants }, swig_Madoop_TextWordFilter_bases, swig_Madoop_TextWordFilter_base_names };
+
+static int _wrap_new_TextFile(lua_State* L) {
+  int SWIG_arg = 0;
+  std::string *arg1 = 0 ;
+  Madoop::TextFile *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::TextFile::TextFile",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop::TextFile::TextFile",1,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("new_TextFile",1,SWIGTYPE_p_std__string);
+  }
+  
+  result = (Madoop::TextFile *)new Madoop::TextFile((std::string const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__TextFile,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TextFile(void *obj) {
+Madoop::TextFile *arg1 = (Madoop::TextFile *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_TextFile_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_TextFile_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_TextFile_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_TextFile_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_TextFile_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_TextFile_bases[] = {0,0};
+static const char *swig_Madoop_TextFile_base_names[] = {"Madoop::MdpObject *",0};
+static swig_lua_class _wrap_class_Madoop_TextFile = { "TextFile", &SWIGTYPE_p_Madoop__TextFile,_wrap_new_TextFile, swig_delete_TextFile, swig_Madoop_TextFile_methods, swig_Madoop_TextFile_attributes, { "TextFile", swig_Madoop_TextFile_cls_methods, swig_Madoop_TextFile_cls_attributes, swig_Madoop_TextFile_cls_constants }, swig_Madoop_TextFile_bases, swig_Madoop_TextFile_base_names };
+
+static int _wrap_mc_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *arg1 = (Madoop::MadoopJobContext *) 0 ;
+  
+  SWIG_check_num_args("Madoop::mc",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mc",1,"Madoop::MadoopJobContext *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__MadoopJobContext,0))){
+    SWIG_fail_ptr("mc_set",1,SWIGTYPE_p_Madoop__MadoopJobContext);
+  }
+  
+  Madoop::mc = *arg1;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mc_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::MadoopJobContext *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mc",0,0)
+  result = (Madoop::MadoopJobContext *)&Madoop::mc;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__MadoopJobContext,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -1914,7 +2437,7 @@ static const struct luaL_Reg swig_commands[] = {
 };
 
 static swig_lua_var_info swig_variables[] = {
-    { "Madoop", _wrap_Madoop_get, _wrap_Madoop_set },
+    { "mc", _wrap_mc_get, _wrap_mc_set },
     {0,0,0}
 };
 
@@ -1924,16 +2447,65 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_namespace = {"_p_namespace", "namespace *", 0, 0, (void*)0, 0};
+static void *_p_Madoop__TextLineTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextLine *) x));
+}
+static void *_p_Madoop__TextFileTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextFile *) x));
+}
+static void *_p_Madoop__TextWordTo_p_Madoop__MdpObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Madoop::MdpObject *)  ((Madoop::TextWord *) x));
+}
+static swig_type_info _swigt__p_Madoop__AudioFile = {"_p_Madoop__AudioFile", "Madoop::AudioFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__ImageFile = {"_p_Madoop__ImageFile", "Madoop::ImageFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__MadoopJobContext = {"_p_Madoop__MadoopJobContext", "Madoop::MadoopJobContext *", 0, 0, (void*)&_wrap_class_Madoop_MadoopJobContext, 0};
+static swig_type_info _swigt__p_Madoop__MdpObject = {"_p_Madoop__MdpObject", "Madoop::MdpObject *", 0, 0, (void*)&_wrap_class_Madoop_MdpObject, 0};
+static swig_type_info _swigt__p_Madoop__TextFile = {"_p_Madoop__TextFile", "Madoop::TextFile *", 0, 0, (void*)&_wrap_class_Madoop_TextFile, 0};
+static swig_type_info _swigt__p_Madoop__TextLine = {"_p_Madoop__TextLine", "Madoop::TextLine *", 0, 0, (void*)&_wrap_class_Madoop_TextLine, 0};
+static swig_type_info _swigt__p_Madoop__TextLineFilter = {"_p_Madoop__TextLineFilter", "Madoop::TextLineFilter *", 0, 0, (void*)&_wrap_class_Madoop_TextLineFilter, 0};
+static swig_type_info _swigt__p_Madoop__TextWord = {"_p_Madoop__TextWord", "Madoop::TextWord *", 0, 0, (void*)&_wrap_class_Madoop_TextWord, 0};
+static swig_type_info _swigt__p_Madoop__TextWordFilter = {"_p_Madoop__TextWordFilter", "Madoop::TextWordFilter *", 0, 0, (void*)&_wrap_class_Madoop_TextWordFilter, 0};
+static swig_type_info _swigt__p_Madoop__VideoFile = {"_p_Madoop__VideoFile", "Madoop::VideoFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_namespace,
+  &_swigt__p_Madoop__AudioFile,
+  &_swigt__p_Madoop__ImageFile,
+  &_swigt__p_Madoop__MadoopJobContext,
+  &_swigt__p_Madoop__MdpObject,
+  &_swigt__p_Madoop__TextFile,
+  &_swigt__p_Madoop__TextLine,
+  &_swigt__p_Madoop__TextLineFilter,
+  &_swigt__p_Madoop__TextWord,
+  &_swigt__p_Madoop__TextWordFilter,
+  &_swigt__p_Madoop__VideoFile,
+  &_swigt__p_std__string,
 };
 
-static swig_cast_info _swigc__p_namespace[] = {  {&_swigt__p_namespace, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__AudioFile[] = {  {&_swigt__p_Madoop__AudioFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__ImageFile[] = {  {&_swigt__p_Madoop__ImageFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MadoopJobContext[] = {  {&_swigt__p_Madoop__MadoopJobContext, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__MdpObject[] = {  {&_swigt__p_Madoop__TextLine, _p_Madoop__TextLineTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__TextFile, _p_Madoop__TextFileTo_p_Madoop__MdpObject, 0, 0},  {&_swigt__p_Madoop__MdpObject, 0, 0, 0},  {&_swigt__p_Madoop__TextWord, _p_Madoop__TextWordTo_p_Madoop__MdpObject, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextFile[] = {  {&_swigt__p_Madoop__TextFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLine[] = {  {&_swigt__p_Madoop__TextLine, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextLineFilter[] = {  {&_swigt__p_Madoop__TextLineFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWord[] = {  {&_swigt__p_Madoop__TextWord, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__TextWordFilter[] = {  {&_swigt__p_Madoop__TextWordFilter, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__VideoFile[] = {  {&_swigt__p_Madoop__VideoFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_namespace,
+  _swigc__p_Madoop__AudioFile,
+  _swigc__p_Madoop__ImageFile,
+  _swigc__p_Madoop__MadoopJobContext,
+  _swigc__p_Madoop__MdpObject,
+  _swigc__p_Madoop__TextFile,
+  _swigc__p_Madoop__TextLine,
+  _swigc__p_Madoop__TextLineFilter,
+  _swigc__p_Madoop__TextWord,
+  _swigc__p_Madoop__TextWordFilter,
+  _swigc__p_Madoop__VideoFile,
+  _swigc__p_std__string,
 };
 
 

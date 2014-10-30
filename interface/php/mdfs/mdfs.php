@@ -26,16 +26,149 @@ if (!extension_loaded('mdfs')) {
 
 
 
-abstract class mdfs {
-	static function Madoop_set($Madoop) {
-		Madoop_set($Madoop);
+/* PHP Proxy Classes */
+class mdfsException extends Exception {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_mdfs_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
 	}
 
-	static function Madoop_get() {
-		return Madoop_get();
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_mdfs_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_Madoop__mdfsException') {
+			$this->_cPtr=$res;
+			return;
+		}
+		$this->_cPtr=new_mdfsException();
 	}
 }
 
-/* PHP Proxy Classes */
+class mdfsFile {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_mdfs_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_mdfs_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($path_or_mdf=null) {
+		if (is_resource($path_or_mdf) && get_resource_type($path_or_mdf) === '_p_Madoop__mdfsFile') {
+			$this->_cPtr=$path_or_mdf;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_mdfsFile(); break;
+		default: $this->_cPtr=new_mdfsFile($path_or_mdf);
+		}
+	}
+
+	function write($localMem_or_localPath_or_mdf,$size=null) {
+		switch (func_num_args()) {
+		case 1: mdfsFile_write($this->_cPtr,$localMem_or_localPath_or_mdf); break;
+		default: mdfsFile_write($this->_cPtr,$localMem_or_localPath_or_mdf,$size);
+		}
+	}
+
+	function append($localMem_or_localPath_or_mdf,$size=null) {
+		switch (func_num_args()) {
+		case 1: mdfsFile_append($this->_cPtr,$localMem_or_localPath_or_mdf); break;
+		default: mdfsFile_append($this->_cPtr,$localMem_or_localPath_or_mdf,$size);
+		}
+	}
+
+	function read($localMem_or_localPath,$size=null) {
+		switch (func_num_args()) {
+		case 1: $r=mdfsFile_read($this->_cPtr,$localMem_or_localPath); break;
+		default: $r=mdfsFile_read($this->_cPtr,$localMem_or_localPath,$size);
+		}
+		return $r;
+	}
+}
+
+class mdfsDir {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_mdfs_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_mdfs_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($path=null) {
+		if (is_resource($path) && get_resource_type($path) === '_p_Madoop__mdfsDir') {
+			$this->_cPtr=$path;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_mdfsDir(); break;
+		default: $this->_cPtr=new_mdfsDir($path);
+		}
+	}
+}
+
+class mdfsFS {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_mdfs_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_mdfs_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($confPath=null) {
+		if (is_resource($confPath) && get_resource_type($confPath) === '_p_Madoop__mdfsFS') {
+			$this->_cPtr=$confPath;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_mdfsFS(); break;
+		default: $this->_cPtr=new_mdfsFS($confPath);
+		}
+	}
+}
+
 
 ?>

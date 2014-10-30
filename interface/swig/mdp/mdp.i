@@ -1,4 +1,4 @@
-%module mdfs
+%module mdp
 %{
 #include "mdp/mdp.hpp"
 using namespace Madoop

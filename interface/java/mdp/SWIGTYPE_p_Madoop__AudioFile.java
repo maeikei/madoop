@@ -7,13 +7,19 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class mdfs {
-  public static void setMadoop(SWIGTYPE_p_namespace value) {
-    mdfsJNI.Madoop_set(SWIGTYPE_p_namespace.getCPtr(value));
+public class SWIGTYPE_p_Madoop__AudioFile {
+  private long swigCPtr;
+
+  protected SWIGTYPE_p_Madoop__AudioFile(long cPtr, boolean futureUse) {
+    swigCPtr = cPtr;
   }
 
-  public static SWIGTYPE_p_namespace getMadoop() {
-    return new SWIGTYPE_p_namespace(mdfsJNI.Madoop_get(), true);
+  protected SWIGTYPE_p_Madoop__AudioFile() {
+    swigCPtr = 0;
   }
 
+  protected static long getCPtr(SWIGTYPE_p_Madoop__AudioFile obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
+

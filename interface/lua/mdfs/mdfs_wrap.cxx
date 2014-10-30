@@ -12,6 +12,30 @@
 #define SWIG_LUA_TARGET SWIG_LUA_FLAVOR_LUA
 #define SWIG_LUA_MODULE_GLOBAL
 
+
+#ifdef __cplusplus
+/* SwigValueWrapper is described in swig.swg */
+template<typename T> class SwigValueWrapper {
+  struct SwigMovePointer {
+    T *ptr;
+    SwigMovePointer(T *p) : ptr(p) { }
+    ~SwigMovePointer() { delete ptr; }
+    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
+  } pointer;
+  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
+  SwigValueWrapper(const SwigValueWrapper<T>& rhs);
+public:
+  SwigValueWrapper() : pointer(0) { }
+  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
+  operator T&() const { return *pointer.ptr; }
+  T *operator&() { return pointer.ptr; }
+};
+
+template <typename T> T SwigValueInit() {
+  return T();
+}
+#endif
+
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -1838,9 +1862,14 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_namespace swig_types[0]
-static swig_type_info *swig_types[2];
-static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
+#define SWIGTYPE_Madoop__mdfsException swig_types[0]
+#define SWIGTYPE_p_Madoop__mdfsDir swig_types[1]
+#define SWIGTYPE_p_Madoop__mdfsException swig_types[2]
+#define SWIGTYPE_p_Madoop__mdfsFS swig_types[3]
+#define SWIGTYPE_p_Madoop__mdfsFile swig_types[4]
+#define SWIGTYPE_p_std__string swig_types[5]
+static swig_type_info *swig_types[7];
+static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1852,26 +1881,197 @@ static swig_module_info swig_module = {swig_types, 1, 0, 0, 0, 0};
 
 #define SWIG_LUACODE   luaopen_mdfs_luacode
 
-#include "mdp/mdp.hpp"
+namespace swig {
+typedef struct{} LANGUAGE_OBJ;
+}
+
+
+#include "mdfs/mdfs.hpp"
 using namespace Madoop
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-static int _wrap_Madoop_set(lua_State* L) {
+static int _wrap_new_mdfsException(lua_State* L) {
   int SWIG_arg = 0;
-  namespace arg1 ;
-  namespace *argp1 ;
+  Madoop::mdfsException *result = 0 ;
   
-  SWIG_check_num_args("Madoop",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop",1,"namespace");
+  SWIG_check_num_args("Madoop::mdfsException::mdfsException",0,0)
+  result = (Madoop::mdfsException *)new Madoop::mdfsException();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsException,1); SWIG_arg++; 
+  return SWIG_arg;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_namespace,0))){
-    SWIG_fail_ptr("Madoop_set",1,SWIGTYPE_p_namespace);
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_mdfsException(void *obj) {
+Madoop::mdfsException *arg1 = (Madoop::mdfsException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_mdfsException_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_mdfsException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_mdfsException_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_mdfsException_bases[] = {0};
+static const char *swig_Madoop_mdfsException_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_mdfsException = { "mdfsException", &SWIGTYPE_p_Madoop__mdfsException,_wrap_new_mdfsException, swig_delete_mdfsException, swig_Madoop_mdfsException_methods, swig_Madoop_mdfsException_attributes, { "mdfsException", swig_Madoop_mdfsException_cls_methods, swig_Madoop_mdfsException_cls_attributes, swig_Madoop_mdfsException_cls_constants }, swig_Madoop_mdfsException_bases, swig_Madoop_mdfsException_base_names };
+
+static int _wrap_new_mdfsFile__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::mdfsFile",0,0)
+  result = (Madoop::mdfsFile *)new Madoop::mdfsFile();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsFile,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsFile__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::string *arg1 = 0 ;
+  Madoop::mdfsFile *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::mdfsFile",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop::mdfsFile::mdfsFile",1,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("new_mdfsFile",1,SWIGTYPE_p_std__string);
   }
-  arg1 = *argp1;
   
-  Madoop = arg1;
+  result = (Madoop::mdfsFile *)new Madoop::mdfsFile((std::string const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsFile,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsFile__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = 0 ;
+  Madoop::mdfsFile *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::mdfsFile",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop::mdfsFile::mdfsFile",1,"Madoop::mdfsFile const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("new_mdfsFile",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  result = (Madoop::mdfsFile *)new Madoop::mdfsFile((Madoop::mdfsFile const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsFile,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsFile(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_mdfsFile__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_mdfsFile__SWIG_1(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_mdfsFile__SWIG_2(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_mdfsFile'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsFile::mdfsFile()\n"
+    "    Madoop::mdfsFile::mdfsFile(std::string const &)\n"
+    "    Madoop::mdfsFile::mdfsFile(Madoop::mdfsFile const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_mdfsFile_write__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::write",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::write",1,"Madoop::mdfsFile *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Madoop::mdfsFile::write",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Madoop::mdfsFile::write",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_write",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"mdfsFile_write");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  try {
+    (arg1)->write((void const *)arg2,arg3);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
   
   return SWIG_arg;
   
@@ -1883,18 +2083,34 @@ fail:
 }
 
 
-static int _wrap_Madoop_get(lua_State* L) {
+static int _wrap_mdfsFile_write__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
-  namespace result;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  std::string *arg2 = 0 ;
   
-  SWIG_check_num_args("Madoop",0,0)
-  result = Madoop;
-  {
-    namespace * resultptr;
-    resultptr = (namespace *) malloc(sizeof(namespace));
-    memmove(resultptr, &result, sizeof(namespace));
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_namespace,1); SWIG_arg++;
+  SWIG_check_num_args("Madoop::mdfsFile::write",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::write",1,"Madoop::mdfsFile *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::mdfsFile::write",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_write",1,SWIGTYPE_p_Madoop__mdfsFile);
   }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("mdfsFile_write",2,SWIGTYPE_p_std__string);
+  }
+  
+  try {
+    (arg1)->write((std::string const &)*arg2);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -1904,6 +2120,712 @@ fail:
   return SWIG_arg;
 }
 
+
+static int _wrap_mdfsFile_write__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  Madoop::mdfsFile *arg2 = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::write",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::write",1,"Madoop::mdfsFile *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::mdfsFile::write",2,"Madoop::mdfsFile const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_write",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_write",2,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  try {
+    (arg1)->write((Madoop::mdfsFile const &)*arg2);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_write(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_mdfsFile_write__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_mdfsFile_write__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_mdfsFile_write__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'mdfsFile_write'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsFile::write(void const *,size_t)\n"
+    "    Madoop::mdfsFile::write(std::string const &)\n"
+    "    Madoop::mdfsFile::write(Madoop::mdfsFile const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_mdfsFile_append__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::append",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::append",1,"Madoop::mdfsFile *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Madoop::mdfsFile::append",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Madoop::mdfsFile::append",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_append",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"mdfsFile_append");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  try {
+    (arg1)->append((void const *)arg2,arg3);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_append__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::append",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::append",1,"Madoop::mdfsFile *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::mdfsFile::append",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_append",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("mdfsFile_append",2,SWIGTYPE_p_std__string);
+  }
+  
+  try {
+    (arg1)->append((std::string const &)*arg2);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_append__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  Madoop::mdfsFile *arg2 = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::append",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::append",1,"Madoop::mdfsFile *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::mdfsFile::append",2,"Madoop::mdfsFile const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_append",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_append",2,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  try {
+    (arg1)->append((Madoop::mdfsFile const &)*arg2);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_append(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_mdfsFile_append__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_mdfsFile_append__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_mdfsFile_append__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'mdfsFile_append'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsFile::append(void const *,size_t)\n"
+    "    Madoop::mdfsFile::append(std::string const &)\n"
+    "    Madoop::mdfsFile::append(Madoop::mdfsFile const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_mdfsFile_read__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  void *arg2 = (void *) 0 ;
+  size_t arg3 ;
+  size_t result;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::read",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::read",1,"Madoop::mdfsFile *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Madoop::mdfsFile::read",2,"void const *");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Madoop::mdfsFile::read",3,"size_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_read",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  arg2=(void *)SWIG_MustGetPtr(L,2,0,0,2,"mdfsFile_read");
+  SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
+  arg3 = (size_t)lua_tonumber(L, 3);
+  try {
+    result = (arg1)->read((void const *)arg2,arg3);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_read__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFile::read",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Madoop::mdfsFile::read",1,"Madoop::mdfsFile *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Madoop::mdfsFile::read",2,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Madoop__mdfsFile,0))){
+    SWIG_fail_ptr("mdfsFile_read",1,SWIGTYPE_p_Madoop__mdfsFile);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("mdfsFile_read",2,SWIGTYPE_p_std__string);
+  }
+  
+  try {
+    (arg1)->read((std::string const &)*arg2);
+  }
+  catch(Madoop::mdfsException &_e) {
+    (void)_e; /* ignore it */
+    lua_pushfstring(L,"object exception:%s",SWIG_TypePrettyName(SWIGTYPE_Madoop__mdfsException));
+    SWIG_fail;
+  }
+  
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_mdfsFile_read(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_mdfsFile_read__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Madoop__mdfsFile, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, 0, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_mdfsFile_read__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'mdfsFile_read'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsFile::read(void const *,size_t)\n"
+    "    Madoop::mdfsFile::read(std::string const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_mdfsFile(void *obj) {
+Madoop::mdfsFile *arg1 = (Madoop::mdfsFile *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_mdfsFile_methods[] = {
+    {"write", _wrap_mdfsFile_write}, 
+    {"append", _wrap_mdfsFile_append}, 
+    {"read", _wrap_mdfsFile_read}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsFile_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsFile_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_mdfsFile_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_mdfsFile_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_mdfsFile_bases[] = {0};
+static const char *swig_Madoop_mdfsFile_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_mdfsFile = { "mdfsFile", &SWIGTYPE_p_Madoop__mdfsFile,_wrap_new_mdfsFile, swig_delete_mdfsFile, swig_Madoop_mdfsFile_methods, swig_Madoop_mdfsFile_attributes, { "mdfsFile", swig_Madoop_mdfsFile_cls_methods, swig_Madoop_mdfsFile_cls_attributes, swig_Madoop_mdfsFile_cls_constants }, swig_Madoop_mdfsFile_bases, swig_Madoop_mdfsFile_base_names };
+
+static int _wrap_new_mdfsDir__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsDir *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsDir::mdfsDir",0,0)
+  result = (Madoop::mdfsDir *)new Madoop::mdfsDir();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsDir,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsDir__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::string *arg1 = 0 ;
+  Madoop::mdfsDir *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsDir::mdfsDir",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop::mdfsDir::mdfsDir",1,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("new_mdfsDir",1,SWIGTYPE_p_std__string);
+  }
+  
+  result = (Madoop::mdfsDir *)new Madoop::mdfsDir((std::string const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsDir,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsDir(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_mdfsDir__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_mdfsDir__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_mdfsDir'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsDir::mdfsDir()\n"
+    "    Madoop::mdfsDir::mdfsDir(std::string const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_mdfsDir(void *obj) {
+Madoop::mdfsDir *arg1 = (Madoop::mdfsDir *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_mdfsDir_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsDir_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsDir_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_mdfsDir_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_mdfsDir_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_mdfsDir_bases[] = {0};
+static const char *swig_Madoop_mdfsDir_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_mdfsDir = { "mdfsDir", &SWIGTYPE_p_Madoop__mdfsDir,_wrap_new_mdfsDir, swig_delete_mdfsDir, swig_Madoop_mdfsDir_methods, swig_Madoop_mdfsDir_attributes, { "mdfsDir", swig_Madoop_mdfsDir_cls_methods, swig_Madoop_mdfsDir_cls_attributes, swig_Madoop_mdfsDir_cls_constants }, swig_Madoop_mdfsDir_bases, swig_Madoop_mdfsDir_base_names };
+
+static int _wrap_new_mdfsFS__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Madoop::mdfsFS *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFS::mdfsFS",0,0)
+  result = (Madoop::mdfsFS *)new Madoop::mdfsFS();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsFS,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsFS__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  std::string *arg1 = 0 ;
+  Madoop::mdfsFS *result = 0 ;
+  
+  SWIG_check_num_args("Madoop::mdfsFS::mdfsFS",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Madoop::mdfsFS::mdfsFS",1,"std::string const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_std__string,0))){
+    SWIG_fail_ptr("new_mdfsFS",1,SWIGTYPE_p_std__string);
+  }
+  
+  result = (Madoop::mdfsFS *)new Madoop::mdfsFS((std::string const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Madoop__mdfsFS,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_mdfsFS(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_mdfsFS__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_std__string, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_mdfsFS__SWIG_1(L);
+    }
+  }
+  
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_mdfsFS'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Madoop::mdfsFS::mdfsFS()\n"
+    "    Madoop::mdfsFS::mdfsFS(std::string const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static void swig_delete_mdfsFS(void *obj) {
+Madoop::mdfsFS *arg1 = (Madoop::mdfsFS *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Madoop_mdfsFS_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsFS_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Madoop_mdfsFS_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Madoop_mdfsFS_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Madoop_mdfsFS_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Madoop_mdfsFS_bases[] = {0};
+static const char *swig_Madoop_mdfsFS_base_names[] = {0};
+static swig_lua_class _wrap_class_Madoop_mdfsFS = { "mdfsFS", &SWIGTYPE_p_Madoop__mdfsFS,_wrap_new_mdfsFS, swig_delete_mdfsFS, swig_Madoop_mdfsFS_methods, swig_Madoop_mdfsFS_attributes, { "mdfsFS", swig_Madoop_mdfsFS_cls_methods, swig_Madoop_mdfsFS_cls_attributes, swig_Madoop_mdfsFS_cls_constants }, swig_Madoop_mdfsFS_bases, swig_Madoop_mdfsFS_base_names };
 
 #ifdef __cplusplus
 }
@@ -1914,7 +2836,6 @@ static const struct luaL_Reg swig_commands[] = {
 };
 
 static swig_lua_var_info swig_variables[] = {
-    { "Madoop", _wrap_Madoop_get, _wrap_Madoop_set },
     {0,0,0}
 };
 
@@ -1924,16 +2845,36 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_namespace = {"_p_namespace", "namespace *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__Madoop__mdfsException = {"_Madoop__mdfsException", "Madoop::mdfsException", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Madoop__mdfsDir = {"_p_Madoop__mdfsDir", "Madoop::mdfsDir *", 0, 0, (void*)&_wrap_class_Madoop_mdfsDir, 0};
+static swig_type_info _swigt__p_Madoop__mdfsException = {"_p_Madoop__mdfsException", "Madoop::mdfsException *", 0, 0, (void*)&_wrap_class_Madoop_mdfsException, 0};
+static swig_type_info _swigt__p_Madoop__mdfsFS = {"_p_Madoop__mdfsFS", "Madoop::mdfsFS *", 0, 0, (void*)&_wrap_class_Madoop_mdfsFS, 0};
+static swig_type_info _swigt__p_Madoop__mdfsFile = {"_p_Madoop__mdfsFile", "Madoop::mdfsFile *", 0, 0, (void*)&_wrap_class_Madoop_mdfsFile, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
-  &_swigt__p_namespace,
+  &_swigt__Madoop__mdfsException,
+  &_swigt__p_Madoop__mdfsDir,
+  &_swigt__p_Madoop__mdfsException,
+  &_swigt__p_Madoop__mdfsFS,
+  &_swigt__p_Madoop__mdfsFile,
+  &_swigt__p_std__string,
 };
 
-static swig_cast_info _swigc__p_namespace[] = {  {&_swigt__p_namespace, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__Madoop__mdfsException[] = {  {&_swigt__Madoop__mdfsException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__mdfsDir[] = {  {&_swigt__p_Madoop__mdfsDir, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__mdfsException[] = {  {&_swigt__p_Madoop__mdfsException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__mdfsFS[] = {  {&_swigt__p_Madoop__mdfsFS, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Madoop__mdfsFile[] = {  {&_swigt__p_Madoop__mdfsFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
-  _swigc__p_namespace,
+  _swigc__Madoop__mdfsException,
+  _swigc__p_Madoop__mdfsDir,
+  _swigc__p_Madoop__mdfsException,
+  _swigc__p_Madoop__mdfsFS,
+  _swigc__p_Madoop__mdfsFile,
+  _swigc__p_std__string,
 };
 
 
