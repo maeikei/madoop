@@ -1800,6 +1800,9 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 
 
+  #define SWIG_exception(code, msg) do { SWIG_Error(code, msg);; } while(0) 
+
+
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Madoop__mdfsDir swig_types[0]

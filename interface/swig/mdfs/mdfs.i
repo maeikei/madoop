@@ -1,3 +1,4 @@
+%include "exception.i"
 %module mdfs
 %{
 #include "mdfs/mdfs.hpp"

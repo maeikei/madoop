@@ -1,8 +1,9 @@
 #ifndef __MDFS_HPP__
 #define __MDFS_HPP__
-#include <string>
+#include <typeinfo>
 #include <exception>
-//using namespace std;
+#include <string>
+using namespace std;
 
 
 namespace Madoop

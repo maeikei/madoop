@@ -1,7 +1,9 @@
 #ifndef __MDP_HPP__
 #define __MDP_HPP__
+#include <typeinfo>
+#include <exception>
 #include <string>
-//using namespace std;
+using namespace std;
 
 
 
