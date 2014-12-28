@@ -7,5 +7,19 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class mdfs {
+public class SWIGTYPE_p_Madoop__AudioFile {
+  private long swigCPtr;
+
+  protected SWIGTYPE_p_Madoop__AudioFile(long cPtr, boolean futureUse) {
+    swigCPtr = cPtr;
+  }
+
+  protected SWIGTYPE_p_Madoop__AudioFile() {
+    swigCPtr = 0;
+  }
+
+  protected static long getCPtr(SWIGTYPE_p_Madoop__AudioFile obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
+

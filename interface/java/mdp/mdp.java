@@ -7,5 +7,14 @@
  * ----------------------------------------------------------------------------- */
 
 
-public class mdfs {
+public class mdp {
+  public static void setMc(MadoopJobContext value) {
+    mdpJNI.mc_set(MadoopJobContext.getCPtr(value), value);
+  }
+
+  public static MadoopJobContext getMc() {
+    long cPtr = mdpJNI.mc_get();
+    return (cPtr == 0) ? null : new MadoopJobContext(cPtr, false);
+  }
+
 }
